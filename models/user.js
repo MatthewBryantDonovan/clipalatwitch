@@ -6,14 +6,14 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   userImage: String,
   streamers: [{
-    name: { type: String, required: true },
-    image: { type: String, required: true },
-    likedContent: { type: String, required: true }
+    name: String,
+    image: String,
+    likedContent: String
   }],
   games: [{
-    name: { type: String, required: true },
-    image: { type: String, required: true },
-    likedContent: { type: String, required: true }
+    name: String,
+    image: String,
+    likedContent: String
   }],
   userSince: { type: Date, default: Date.now },
   lastLogin: { type: Date, default: Date.now }
