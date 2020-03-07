@@ -3,17 +3,17 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route} from 'react-router-dom'
 import './index.css';
 import Sidenav from './components/Sidenav';
+import Form from './components/Form'
+
 // import * as serviceWorker from './serviceWorker';
 
 
-function router() {
-      return (
-            <Router>
-                  <Route>test</Route>
-            </Router>
-      )
-}
-
+const router = (
+<Router>
+      <Sidenav />
+      <Form />
+</Router>
+)
 export default router
 
 
