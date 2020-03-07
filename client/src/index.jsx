@@ -13,7 +13,7 @@ function router() {
       )
 }
 
-export default index
+export default router
 
 
 ReactDOM.render(router, document.getElementById('root'));
