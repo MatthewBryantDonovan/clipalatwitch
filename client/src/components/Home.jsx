@@ -1,12 +1,12 @@
 import React from 'react'
 import Form from './Form'
-import axios from './axios'
+import API from '../utils/API.js'
 
 
 function Home() {
 
-      const submit = () => {
-            axios.post('../../../api/users/creat', {data1, data2})
+      const submit = (userData) => {
+            API.createUser(userData)
       }
       return (
             <React.Fragment>
