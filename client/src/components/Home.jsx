@@ -1,32 +1,21 @@
-import React from 'react'
-import Form from './Form'
-import API from '../utils/API.js'
-
+import React from 'react';
 
 function Home() {
 
-      const submitCreate = (userData) => {
-            API.createUser(userData).then(function(data){
-            console.log(data);
-            }).catch(function(err){
-            console.log(err);
-            });
-      }
-
-      const submitLogin = (userData) => {
-            API.loginUser(userData).then(function(data){
-            console.log(data);
-            }).catch(function(err){
-            console.log(err);
-            });
-      }
-
-
       return (
             <React.Fragment>
-                  <Form submit={submitCreate} />
-                  <div><p>ABOVE FOR CREATE AND BELOW FOR LOGIN</p></div>
-                  <Form submit={submitLogin} />
+                  <div className="container">
+                        <div className="row">
+                              <div className="col s12 m6">
+                                    <div className="card blue-grey darken-1">
+                                          <div className="card-content white-text">
+                                                <span className="card-title">Home placeholder</span>
+                                                <p>Welcome home!</p>
+                                          </div>
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
             </React.Fragment>
       )
 }

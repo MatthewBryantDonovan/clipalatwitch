@@ -5,18 +5,47 @@ import 'materialize-css/dist/css/materialize.min.css'
 import './index.css';
 import Sidenav from './components/Sidenav';
 import Home from './components/Home'
+import Register from './components/Register'
+import Login from './components/Login'
 
 
 // import * as serviceWorker from './serviceWorker';
 
+const routes = [
+      {
+            path: '/',
+            exact: true,
+            component: Home
+      },
+      {
+            path: '/home',
+            exact: true,
+            component: Home
+      },
+      {
+            path: '/register',
+            exact: true,
+            component: Register
+      },
+      {
+            path: '/login',
+            exact: true,
+            component: Login
+      },
+]
+
 const router = (
       <Router>
             <Sidenav />
+            {routes.map((route, index) => (
                   <Route
-                        path='/'
-                        exact
-                        component={Home}
+                        key={index}
+                        path={route.path}
+                        exact={route.exact}
+                        component={route.component}
                   />
+            ))}
+
       </Router>
 )
 export default router
