@@ -1,14 +1,33 @@
 const express = require('express');
-const app = express();
-const PORT = process.env.PORT || 5000;
 const orm = require('mongoose');
+const routes = require("./routes");
+const path = require("path");
+const PORT = process.env.PORT || 3001;
+const app = express();
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 
 if (process.env.NODE_ENV === "production") {
-      app.use(express.static("client/build"));
-    }
+  app.use(express.static("client/build"));
+}
 
-orm.connect(process.env.MONGODB_URI  || "mongodb://mattmatt:pass123@ds215988.mlab.com:15988/heroku_t957lb48")
+// Define middleware here
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.get('/', (req, res) => res.json({msg: 'testing server'}))
+app.use(routes);
 
-app.listen(PORT, () => console.log(`site live at http://localhost:${PORT}`))
+orm.connect(process.env.MONGODB_URI  || process.env.MONGO_DB_KEY)
+
+
+// Send every other request to the React app
+// Define any API routes before this runs
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
+
+app.listen(PORT, () => {
+  console.log(`🌎 ==> API server now on port ${PORT}!`);
+});
