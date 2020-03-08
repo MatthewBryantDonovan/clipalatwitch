@@ -32,9 +32,9 @@ function Login() {
                         <form action="submit" onSubmit={submit} >
                               <h1>Login!</h1>
                               <label htmlFor="username">Username</label>
-                              <input type="text" id="username" onChange={updateUsername} />
+                              <input type="text" id="username" onChange={updateUsername} required  />
                               <label htmlFor="password">Password</label>
-                              <input type="password" id="password" onChange={updatePassword} />
+                              <input type="password" id="password" onChange={updatePassword} required  />
                               <button type="submit" className="btn" >Login</button>
                         </form>
                   </div>
