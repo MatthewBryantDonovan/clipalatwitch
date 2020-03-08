@@ -1,0 +1,16 @@
+.sidenav {
+      background-color: #161616;
+      color: #ffffff;
+}
+
+ .nav-head-icon {
+      color: #161616;
+}
+
+.sidenav li > a {
+      color: #ffffff;
+}
+
+li>a>i.material-icons  {
+      color: #66fcf1;
+}
