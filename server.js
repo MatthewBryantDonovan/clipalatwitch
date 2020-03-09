@@ -4,6 +4,7 @@ const routes = require("./routes");
 const path = require("path");
 const PORT = process.env.PORT || 5000;
 const app = express();
+const chalk = require('chalk')
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
@@ -29,5 +30,5 @@ app.get("*", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`server live at http://localhost:${PORT} \n http://localhost:${PORT}/api/users `);
+  console.log(`server live at ` +  chalk.bgBlue(`http://localhost:${PORT}`) + '\n ' + chalk.bgMagenta(`http://localhost:${PORT}/api/users`));
 });
