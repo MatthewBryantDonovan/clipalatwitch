@@ -19,19 +19,19 @@ const routes = [
       },
       {
             path: '/home',
-            exact: true,
+            exact: false,
             component: Home
       },
       {
             path: '/register',
-            exact: true,
+            exact: false,
             component: Register
       },
       {
             path: '/login',
-            exact: true,
+            exact: false,
             component: Login
-      },
+      }
 ]
 
 const router = (

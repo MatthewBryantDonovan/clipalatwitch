@@ -4,9 +4,9 @@ import API from '../utils/API.js'
 function Register() {
 
       const [username, setUsername] = useState({});
-      const [pic, setPic] = useState({});
+      const [userImage, setUserImage] = useState({});
       const [password, setPassword] = useState({});
-      const [confirmPassword, setConfirmPassword] = useState({});
+      // const [confirmPassword, setConfirmPassword] = useState({});
 
       function updateUsername(e) {
             const newVal = e.target.value;
@@ -15,7 +15,7 @@ function Register() {
      
       function updatePic(e) {
             const newVal = e.target.value;
-            setPic(newVal)
+            setUserImage(newVal)
       }
 
       function updatePassword(e) {
@@ -23,21 +23,23 @@ function Register() {
             setPassword(newVal)
       }
      
-      function updateConfirmPassword(e) {
-            const newVal = e.target.value;
-            setConfirmPassword(newVal)
-      }
+      // function updateConfirmPassword(e) {
+      //       const newVal = e.target.value;
+      //       setConfirmPassword(newVal)
+      // }
 
       const submit = e => {
             e.preventDefault();
             const object = {
                   username,
-                  pic,
-                  password,
-                  confirmPassword,
+                  userImage,
+                  password
             }
-            API.createUser(object)
-            console.log(object)
+            API.createUser(object).then(function(data){
+            console.log(data);
+            }).catch(function(err){
+            console.log(err);
+            });
       }
 
       return (
@@ -51,8 +53,8 @@ function Register() {
                               <input type="text" id="username" onChange={updatePic} required  />
                               <label htmlFor="password">Password</label>
                               <input type="password" id="password" onChange={updatePassword} required  />
-                              <label htmlFor="password">Confirm Password</label>
-                              <input type="password" id="password" onChange={updateConfirmPassword} required  />
+                              {/* <label htmlFor="password">Confirm Password</label>
+                              <input type="password" id="password" onChange={updateConfirmPassword} required  /> */}
                               <button type="submit" className="btn" >Register</button>
                         </form>
                   </div>

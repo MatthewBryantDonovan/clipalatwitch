@@ -22,8 +22,12 @@ function Login() {
                   username: username,
                   password: password
             }
-            API.createUser(object)
-            console.log(object)
+            API.loginUser(object).then(function(data){
+            console.log(data);
+            }).catch(function(err){
+            console.log(err);
+            });
+
       }
 
       return (
