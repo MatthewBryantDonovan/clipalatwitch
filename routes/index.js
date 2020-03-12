@@ -5,9 +5,4 @@ const apiRoutes = require("./api");
 // API Routes
 router.use("/api", apiRoutes);
 
-// // If no API routes are hit, send the React app
-// router.get("/login", function(req, res) {
-//   res.redirect("/register");
-// });
-
 module.exports = router;

@@ -27,6 +27,14 @@ function Sidenav() {
                         <li><Link to="/home" className="sidenav-close" ><i className="material-icons" style={{color: '#66fcf1'}} >home</i>Home</Link></li>
                         <li><Link to="/login" className="sidenav-close"  ><i className="material-icons" style={{color: '#66fcf1'}}  >person</i>Login</Link></li>
                         <li><Link to="/register" className="sidenav-close"  ><i className="material-icons" style={{color: '#66fcf1'}} >create</i>Create an account</Link></li>
+                        <li>
+                              <form action="/logout?_method=DELETE" method="POST">
+                                    <i className="material-icons" style={{color: '#66fcf1'}} >
+                                          logout
+                                    </i>
+                                    <button type="submit">Log Out</button>
+                              </form>
+                        </li>
                   </ul>
             </React.Fragment>
       )
