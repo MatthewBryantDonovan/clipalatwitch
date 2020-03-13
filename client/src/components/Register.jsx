@@ -6,18 +6,17 @@ function Register(props) {
       
       const [username, setUsername] = useState({});
       const [redirect, setRedirect] = useState(false);
-      const [pic, setPic] = useState({});
+      const [userImage, setUserImage] = useState({});
       const [password, setPassword] = useState({});
-      const [confirmPassword, setConfirmPassword] = useState({});
 
       function updateUsername(e) {
             const newVal = e.target.value;
             setUsername(newVal)
       }
 
-      function updatePic(e) {
+      function updateUserImage(e) {
             const newVal = e.target.value;
-            setPic(newVal)
+            setUserImage(newVal)
       }
 
       function updatePassword(e) {
@@ -25,22 +24,20 @@ function Register(props) {
             setPassword(newVal)
       }
 
-      function updateConfirmPassword(e) {
-            const newVal = e.target.value;
-            setConfirmPassword(newVal)
-      }
-
       const submit = e => {
             e.preventDefault();
             const object = {
                   username,
-                  pic,
-                  password,
-                  confirmPassword,
+                  userImage,
+                  password
             }
-            // API.createUser(object)
-                  // props.loginRoutes()
+
                   setRedirect(true)
+            API.createUser(object).then(function(data){
+            console.log(data);
+            }).catch(function(err){
+            console.log(err);
+            });
       }
 
 
@@ -60,11 +57,9 @@ function Register(props) {
                               <label htmlFor="username">Username</label>
                               <input type="text" id="username" onChange={updateUsername} required />
                               <label htmlFor="username">Image URL for profile pic</label>
-                              <input type="text" id="username" onChange={updatePic} required />
+                              <input type="text" id="username" onChange={updateUserImage} required />
                               <label htmlFor="password">Password</label>
-                              <input type="password" id="password" onChange={updatePassword} required />
-                              <label htmlFor="password">Confirm Password</label>
-                              <input type="password" id="password" onChange={updateConfirmPassword} required />
+                              <input type="password" id="password" onChange={updatePassword} required  />
                               <button type="submit" className="btn" >Register</button>
                         </form>
                   </div>
