@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import API from '../utils/API.js';
-import { set } from 'mongoose';
+import { Link } from 'react-router-dom';
 
 function Login() {
 
@@ -23,8 +23,8 @@ function Login() {
       const submit = e => {
             e.preventDefault();
             const object = {
-                  username: username,
-                  password: password
+                  username,
+                  password
             }
             console.log("sending login req");
             
@@ -57,6 +57,7 @@ function Login() {
                               <input type="password" id="password" onChange={updatePassword} required  />
                               <button type="submit" className="btn" >Login</button>
                         </form>
+                        <p>Don't have an account? creat one <Link className="linkText" to="/register">here!</Link> </p>
                   </div>
             </React.Fragment>
       )

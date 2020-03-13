@@ -36,7 +36,7 @@ module.exports = {
 
   userLogin: function(req, res) {
 
-    ///////////////////////// OG
+    ///////////////////////// Original
     // db.User.findOne({ username: req.body.username})
     //   .then(function(user){
   
@@ -44,21 +44,17 @@ module.exports = {
     //   
     
     // }).catch(err => res.status(422).json(err));
-    ///////////////////////// OG 
+    ///////////////////////// Original 
 
-    ///////////////////////// FIXME: TEST 
+    ///////////////////////// FIXME: New 
 
-    console.log("made it to login @ usersController");
-    
-    passport.authenticate('local', {
-      successRedirect: "/",
-      failureRedirect: "/login",
-      failureFlash: true
-    })
+    // passport.authenticate('local', {
+    //   successRedirect: "/",
+    //   failureRedirect: "/login",
+    //   failureFlash: true
+    // })
 
-
-
-
+    passport.authenticate('local')
     
   }
   

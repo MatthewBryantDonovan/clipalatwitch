@@ -89,22 +89,6 @@ app.post("/api/users/login", passport.authenticate('local',
 ));
 ///////////////////////////////// FIXME: END TEST
 
-
-///// SUPER TEST FIXME:////////////////
-//    // Endpoint to login
-//    app.post('/api/users/login',
-//    passport.authenticate('local'),
-//    function(req, res) {
-//     let resObject = req.user;
-//     resObject.password = "";
-//     res.send(resObject);
-//    }
-// );
-///// SUPER TEST FIXME:////////////////
-
-
-
-
 app.delete("/logout", (req, res) => {
     console.log(req.session.passport);
     if(req.session.passport.user){
@@ -124,19 +108,10 @@ app.delete("/logout", (req, res) => {
       console.log(false);
     }
 });
-// ////// FIXME: FLASH IS BROKEN
-
-/////////////// FIXME: DELETE FOR production////////////////////
-// app.use(express.static("client/build"));
-/////////////// FIXME: DELETE FOR production////////////////////
-
-
 
 app.use(routes);
 
-
 orm.connect(process.env.MONGODB_URI  || process.env.MONGO_DB_KEY)
-
 
 // Send every other request to the React app
 // Define any API routes before this runs
