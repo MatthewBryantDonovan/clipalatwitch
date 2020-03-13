@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import API from '../utils/API.js'
+import { Redirect } from 'react-router-dom';
 
-function Register() {
-
+function Register(props) {
+      
       const [username, setUsername] = useState({});
+      const [redirect, setRedirect] = useState(false);
       const [pic, setPic] = useState({});
       const [password, setPassword] = useState({});
       const [confirmPassword, setConfirmPassword] = useState({});
@@ -12,7 +14,7 @@ function Register() {
             const newVal = e.target.value;
             setUsername(newVal)
       }
-     
+
       function updatePic(e) {
             const newVal = e.target.value;
             setPic(newVal)
@@ -22,7 +24,7 @@ function Register() {
             const newVal = e.target.value;
             setPassword(newVal)
       }
-     
+
       function updateConfirmPassword(e) {
             const newVal = e.target.value;
             setConfirmPassword(newVal)
@@ -36,23 +38,33 @@ function Register() {
                   password,
                   confirmPassword,
             }
-            API.createUser(object)
-            console.log(object)
+            // API.createUser(object)
+                  // props.loginRoutes()
+                  setRedirect(true)
       }
+
+
+      useEffect(()=> {
+            if(redirect === true) {
+                  props.loginRoutes()
+            }
+      }, [redirect])
 
       return (
             <React.Fragment>
+                  {redirect && <Redirect to='/home' />}
                   <div className="container">
-                        <h1>Register!</h1>
+                        <h1>Creat an account!</h1>
+                        <h1>{props.boogers}</h1>
                         <form action="submit" onSubmit={submit} >
                               <label htmlFor="username">Username</label>
                               <input type="text" id="username" onChange={updateUsername} required />
                               <label htmlFor="username">Image URL for profile pic</label>
-                              <input type="text" id="username" onChange={updatePic} required  />
+                              <input type="text" id="username" onChange={updatePic} required />
                               <label htmlFor="password">Password</label>
-                              <input type="password" id="password" onChange={updatePassword} required  />
+                              <input type="password" id="password" onChange={updatePassword} required />
                               <label htmlFor="password">Confirm Password</label>
-                              <input type="password" id="password" onChange={updateConfirmPassword} required  />
+                              <input type="password" id="password" onChange={updateConfirmPassword} required />
                               <button type="submit" className="btn" >Register</button>
                         </form>
                   </div>

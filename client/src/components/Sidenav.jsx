@@ -1,17 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './css/Sidenav.css';
 import { Link } from 'react-router-dom'
 import M from 'materialize-css/dist/js/materialize.min.js'
 
-function Sidenav() {
+function Sidenav(props) {
+      const [routes, setRoutes] = useState(props.routes)
 
       useEffect(() => {
             const elems = document.querySelectorAll('.sidenav');
             const instances = M.Sidenav.init(elems, {
                   edge: 'left',
                   inDuration: 175
-            });      
-      }, [])
+            });
+            console.log(props.routes)
+            setRoutes(props.routes)
+      }, [routes])
 
       return (
             <React.Fragment>
@@ -20,13 +23,13 @@ function Sidenav() {
                   </nav>
                   <ul id="slide-out" className="sidenav">
                         <li><div className="user-view">
-                              <a href="#user"><img className="circle" src="images/yuna.jpg" alt="placeholder" /></a>
+                              <a href="#user"><img className="circle" src="https://lowbrowcomics.files.wordpress.com/2016/02/x-23-target-x-006-008.jpg" alt="placeholder" /></a>
                               <a href="#name"><span className="white-text name">John Doe</span></a>
                               <a href="#email"><span className="white-text email">jdandturk@gmail.com</span></a>
                         </div></li>
-                        <li><Link to="/home" className="sidenav-close" ><i className="material-icons" style={{color: '#66fcf1'}} >home</i>Home</Link></li>
-                        <li><Link to="/login" className="sidenav-close"  ><i className="material-icons" style={{color: '#66fcf1'}}  >person</i>Login</Link></li>
-                        <li><Link to="/register" className="sidenav-close"  ><i className="material-icons" style={{color: '#66fcf1'}} >create</i>Create an account</Link></li>
+                        {props.routes.map((route, index) => (
+                              <li key={index}><Link to={route.path} className="sidenav-close" ><i className="material-icons" style={{color: '#66fcf1'}} >{route.i}</i>{route.name}</Link></li>
+                        ))}
                   </ul>
             </React.Fragment>
       )

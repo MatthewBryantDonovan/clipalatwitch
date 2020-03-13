@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import 'materialize-css/dist/css/materialize.min.css'
 import './index.css';
 import Sidenav from './components/Sidenav';
@@ -11,45 +11,73 @@ import Login from './components/Login'
 
 // import * as serviceWorker from './serviceWorker';
 
-const routes = [
-      {
-            path: '/',
-            exact: true,
-            component: Home
-      },
-      {
-            path: '/home',
-            exact: true,
-            component: Home
-      },
-      {
-            path: '/register',
-            exact: true,
-            component: Register
-      },
-      {
-            path: '/login',
-            exact: true,
-            component: Login
-      },
-]
+function Routing() {
+      
+      const acctRoutes = [
+            {
+                  path: '/home',
+                  name: 'Home',
+                  i: 'home',
+            },
+            {
+                  path: '/logout',
+                  name: 'Logout',
+                  i: 'person',
+            },
+      ]
+      
+      const noAcctRoutes = [
+            {
+                  path: '/home',
+                  name: 'Home',
+                  i: 'home'
+            },
+            {
+                  path: '/register',
+                  name: 'Register',
+                  i: 'create'
+            },
+            {
+                  path: '/login',
+                  name: 'Login',
+                  i: 'person'
+            },
+      ]
+      
+      const [routes, setRoutes] = useState(noAcctRoutes);
+            
+      const loginRoutesChanged = () => setRoutes(acctRoutes);
 
-const router = (
-      <Router>
-            <Sidenav />
-            {routes.map((route, index) => (
+      return (
+            <Router>
+                  <Sidenav routes={routes} />
+
                   <Route
-                        key={index}
-                        path={route.path}
-                        exact={route.exact}
-                        component={route.component}
+                        path='/'
+                        exact={true}
+                        component={() => <Redirect to="/home" />}
                   />
-            ))}
 
-      </Router>
-)
-export default router
+                  <Route
+                        path='/home'
+                        component={() => <Home />}
+                  />
+
+                  <Route
+                        path='/login'
+                        component={() => <Login loginRoutes={loginRoutesChanged} />}
+                  />
+
+                  <Route
+                        path='/register'
+                        component={() => <Register routes={routes} loginRoutes={loginRoutesChanged} />}
+                  />
+
+            </Router>
+      )
+}
+export default Routing
 
 
-ReactDOM.render(router, document.getElementById('root'));
+ReactDOM.render(<Routing />, document.getElementById('root'));
 
