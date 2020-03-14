@@ -1,4 +1,5 @@
 import React from 'react';
+import ClipRiver from "./ClipRiver"
 
 function Home() {
 
@@ -13,6 +14,7 @@ function Home() {
                                                 <p>Welcome home!</p>
                                           </div>
                                     </div>
+                                    <ClipRiver />
                               </div>
                         </div>
                   </div>

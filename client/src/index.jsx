@@ -7,6 +7,8 @@ import Sidenav from './components/Sidenav';
 import Home from './components/Home'
 import Register from './components/Register'
 import Login from './components/Login'
+import UserSearchPage from './components/UserSearchPage'
+import UserSavedPage from './components/UserSavedPage'
 
 
 // import * as serviceWorker from './serviceWorker';
@@ -31,6 +33,16 @@ const routes = [
             path: '/login',
             exact: true,
             component: Login
+      },
+      {
+            path: '/search',
+            exact: true,
+            component: UserSearchPage
+      },
+      {
+            path: '/saved',
+            exact: true,
+            component: UserSavedPage
       },
 ]
 

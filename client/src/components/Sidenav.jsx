@@ -25,6 +25,8 @@ function Sidenav() {
                               <a href="#email"><span className="white-text email">jdandturk@gmail.com</span></a>
                         </div></li>
                         <li><Link to="/home" className="sidenav-close" ><i className="material-icons" style={{color: '#66fcf1'}} >home</i>Home</Link></li>
+                        <li><Link to="/search" className="sidenav-close" ><i className="material-icons" style={{color: '#66fcf1'}} >search</i>Search</Link></li>
+                        <li><Link to="/saved" className="sidenav-close" ><i className="material-icons" style={{color: '#66fcf1'}} >favorite</i>Saved</Link></li>
                         <li><Link to="/login" className="sidenav-close"  ><i className="material-icons" style={{color: '#66fcf1'}}  >person</i>Login</Link></li>
                         <li><Link to="/register" className="sidenav-close"  ><i className="material-icons" style={{color: '#66fcf1'}} >create</i>Create an account</Link></li>
                   </ul>
