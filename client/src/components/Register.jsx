@@ -1,58 +1,65 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { Redirect } from 'react-router-dom';
 import API from '../utils/API.js'
 
-function Register() {
-
+function Register(props) {
+      
       const [username, setUsername] = useState({});
-      const [pic, setPic] = useState({});
+      const [redirect, setRedirect] = useState(false);
+      const [userImage, setUserImage] = useState({});
       const [password, setPassword] = useState({});
-      const [confirmPassword, setConfirmPassword] = useState({});
 
       function updateUsername(e) {
             const newVal = e.target.value;
             setUsername(newVal)
       }
-     
-      function updatePic(e) {
+
+      function updateUserImage(e) {
             const newVal = e.target.value;
-            setPic(newVal)
+            setUserImage(newVal)
       }
 
       function updatePassword(e) {
             const newVal = e.target.value;
             setPassword(newVal)
       }
-     
-      function updateConfirmPassword(e) {
-            const newVal = e.target.value;
-            setConfirmPassword(newVal)
-      }
 
       const submit = e => {
             e.preventDefault();
             const object = {
                   username,
-                  pic,
-                  password,
-                  confirmPassword,
+                  userImage,
+                  password
             }
-            API.createUser(object)
-            console.log(object)
+
+            API.createUser(object).then(function(data){
+                  setRedirect(true)
+                  console.log(data);
+            }).catch(function(err){
+                  console.log(err);
+            });
       }
+
+
+      useEffect(()=> {
+            if(redirect === true) {
+                  props.loginRoutes()
+            }
+      }, [redirect])
 
       return (
             <React.Fragment>
+                  {redirect && <Redirect to='/home' />}
                   <div className="container">
-                        <h1>Register!</h1>
+                        <h1>Creat an account!</h1>
+                        <h1>{props.boogers}</h1>
                         <form action="submit" onSubmit={submit} >
                               <label htmlFor="username">Username</label>
                               <input type="text" id="username" onChange={updateUsername} required />
                               <label htmlFor="username">Image URL for profile pic</label>
-                              <input type="text" id="username" onChange={updatePic} required  />
+                              <input type="text" id="username" onChange={updateUserImage} required />
                               <label htmlFor="password">Password</label>
                               <input type="password" id="password" onChange={updatePassword} required  />
-                              <label htmlFor="password">Confirm Password</label>
-                              <input type="password" id="password" onChange={updateConfirmPassword} required  />
                               <button type="submit" className="btn" >Register</button>
                         </form>
                   </div>

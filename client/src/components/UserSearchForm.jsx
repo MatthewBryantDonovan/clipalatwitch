@@ -8,19 +8,10 @@ function UserSearchForm(props) {
         const newVal = e.target.value;
         setName(newVal)
     }
-
-    const submit = e => {
-        e.preventDefault();
-        const object = {
-                name: name
-        }
-        // API.createUser(object) call function for API search most likely in parent
-        console.log(object)
-    }
     
     return(<div>
         <h1>I am the UserSearchForm</h1>
-        <form action="submit" onSubmit={submit}>
+        <form action="submit" onSubmit={(e) => {e.preventDefault(); props.submit( props.formType, name)}}>
         <h1>{props.formType} Search!</h1>
             <label htmlFor="name">{props.formType} Name</label>
             <input type="text" id="name" onChange={updateName} required  />

@@ -1,6 +1,6 @@
 import React from 'react';
-import FollowSlick from "./FollowSlick";
-import ClipSlick from "./ClipSlick";
+import FollowSlick from "../components/FollowSlick";
+import ClipSlick from "../components/ClipSlick";
 
 function UserSavedPage() {
 

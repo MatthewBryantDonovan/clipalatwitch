@@ -28,3 +28,11 @@ nav {
   background-color: #66fcf1;
   color: #161616;
 }
+
+.linkText {
+  color: #66fcf1;
+}
+
+.linkText:hover {
+  color: #9b66fc;
+}

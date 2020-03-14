@@ -1,5 +1,5 @@
 const db = require("../models");
-const axios = require("axios");
+const passport = require("passport");
 
 // Defining methods for the booksController
 module.exports = {
@@ -17,6 +17,7 @@ module.exports = {
         db.User.create(req.body)
           .then(dbModel => {
             console.log(dbModel);
+            dbModel.password = "";
             
             res.json(dbModel)
               //FIXME: need to send completed only
@@ -34,19 +35,27 @@ module.exports = {
   },
 
   userLogin: function(req, res) {
-    db.User.findOne({ username: req.body.username})
-      .then(function(user){
+
+    ///////////////////////// Original
+    // db.User.findOne({ username: req.body.username})
+    //   .then(function(user){
   
-      // test a matching password
-      user.comparePassword(req.body.password, function(err, isMatch) {
-          if (err) throw err;
-          if(isMatch){
-            res.json(user) // FIXME:send without password data needed
-          } else {
-            res.status(401).json({err: "Password is incorrect"});
-          }
-      });
-    }).catch(err => res.status(422).json(err));
+    //   // test a matching password
+    //   
+    
+    // }).catch(err => res.status(422).json(err));
+    ///////////////////////// Original 
+
+    ///////////////////////// FIXME: New 
+
+    // passport.authenticate('local', {
+    //   successRedirect: "/",
+    //   failureRedirect: "/login",
+    //   failureFlash: true
+    // })
+
+    passport.authenticate('local')
+    
   }
   
 };
