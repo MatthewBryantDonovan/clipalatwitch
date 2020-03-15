@@ -8,11 +8,13 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   userImage: String,
   streamers: [{
+    id: String,
     name: String,
     image: String,
     likedContent: String
   }],
   games: [{
+    id: String,
     name: String,
     image: String,
     likedContent: String
