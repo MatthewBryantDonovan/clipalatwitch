@@ -36,3 +36,7 @@ nav {
 .linkText:hover {
   color: #9b66fc;
 }
+
+input {
+  color: #ffffff;
+}
