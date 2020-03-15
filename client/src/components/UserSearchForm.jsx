@@ -10,9 +10,9 @@ function UserSearchForm(props) {
     }
     
     return(<div>
-        <h1>I am the UserSearchForm</h1>
+        <p>I am the UserSearchForm</p>
         <form action="submit" onSubmit={(e) => {e.preventDefault(); props.submit( props.formType, name)}}>
-        <h1>{props.formType} Search!</h1>
+        <p>{props.formType} Search!</p>
             <label htmlFor="name">{props.formType} Name</label>
             <input type="text" id="name" onChange={updateName} required  />
             <button type="submit" className="btn" >Search</button>

@@ -1,7 +1,7 @@
 import React from 'react';
 
 function ClipSlick() {
-    return(<div><h1>I am the ClipSlick</h1></div>)
+    return(<div><p>I am the ClipSlick</p></div>)
 }
 
 export default ClipSlick

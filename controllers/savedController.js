@@ -14,14 +14,18 @@ module.exports = {
   //   username: req.body.username
   // }
   saveStreamer: function(req, res) {
+    console.log("!!!!!!!!!!!!!11");
+    console.log(req.body);
+    console.log("!!!!!!!!!!!!!11");
+    
     db.User
-    .update({ username: req.body.username}, 
+    .update({ _id: req.session.passport.user}, 
     {$push: 
       {"streamers": 
         { 
-          id: req.body.streamerID,
-          name: req.body.streamerName,
-          image: req.body.streamerImage
+          id: req.body.id,
+          name: req.body.name,
+          image: req.body.image
         }
       }
     })
@@ -36,13 +40,13 @@ module.exports = {
 
   saveGame: function(req, res) {
     db.User
-    .update({ username: req.body.username}, 
+    .update({ _id: req.session.passport.user}, 
     {$push: 
-      {"streamers": 
+      {"games": 
         { 
-          id: req.body.gameID,
-          name: req.body.gameName,
-          image: req.body.gameImage
+          id: req.body.id,
+          name: req.body.name,
+          image: req.body.image
         }
       }
     })
@@ -57,7 +61,7 @@ module.exports = {
 
   userSavedInfo: function(req, res) {
     db.User
-    .findOne({ username: req.body.username})
+    .findOne({ _id: req.session.passport.user})
     .then(dbModel => {
       let resObj = {
         streamers: dbModel.streamers,
@@ -120,7 +124,7 @@ module.exports = {
     }
   },
 
-  //need to send the following object
+  //need to send the following object for clip
   // {
   //   "id": req.body.ID,
   //   "type": req.body.type,
