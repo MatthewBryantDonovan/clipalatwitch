@@ -55,12 +55,7 @@ function UserSavedPage() {
             </div>
             <div className="row">
                 <div className="col m12">
-                { (clipData) ? clipData.clips.map(clip => (
-                <div id={clip.id}>
-                    <iframe src={clip.embed_url + "&autoplay=false"} height="500" width="750"></iframe>
-                </div>
-            )) : <div></div>}
-                    <ClipSlick />
+                    <ClipSlick clipData={clipData} />
                 </div>
             </div>
             <div className="row">

@@ -68,7 +68,8 @@ function UserSearchPage () {
         }
     }
     
-    return(<div>
+    return(
+    <div>
     <div className="container">
         <p>I am the UserSearchPage</p>
         <div className="row">
@@ -104,12 +105,8 @@ function UserSearchPage () {
             <div></div>
             }
 
-            <ClipSlick />
-            { (clipData) ? clipData.clips.map(clip => (
-                <div id={clip.id}>
-                    <iframe src={clip.embed_url + "&autoplay=false"} height="500" width="750"></iframe>
-                </div>
-            )) : <div></div>}
+            <ClipSlick clipData={clipData} />
+            
         </div>
     </div>
     
