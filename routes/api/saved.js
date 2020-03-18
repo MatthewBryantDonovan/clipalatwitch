@@ -21,4 +21,12 @@ router.route("")
 router.route("/clips/:type/:id")
 .get(savedController.viewClips);
 
+// Matches with "/api/saved/delete/:type/:id"
+router.route("/delete/:type/:id")
+.post(savedController.removeStreamerOrGame)
+
 module.exports = router;
+
+// numberframes = base(window.Sizzle / 320 )
+
+// frames = numberframes

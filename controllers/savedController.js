@@ -14,63 +14,82 @@ module.exports = {
   //   username: req.body.username
   // }
   saveStreamer: function(req, res) {
-    console.log("!!!!!!!!!!!!!11");
-    console.log(req.body);
-    console.log("!!!!!!!!!!!!!11");
-    
-    db.User
-    .update({ _id: req.session.passport.user}, 
-    {$push: 
-      {"streamers": 
-        { 
-          id: req.body.id,
-          name: req.body.name,
-          image: req.body.image
-        }
-      }
-    })
-    .then(dbModel => {
-      console.log(dbModel);
+    db.User.findOne({ _id: req.session.passport.user, streamers: { $elemMatch: {id: req.body.id} }}).then(function(data){
+      if(!data){
+        db.User
+        .updateOne({ _id: req.session.passport.user}, 
+        {$push: 
+          {"streamers": 
+            { 
+              id: req.body.id,
+              name: req.body.name,
+              image: req.body.image
+            }
+          }
+        })
+        .then(dbModel => {
 
-      res.json({message: "streamer saved"})
-      
-    })
-    .catch(err => res.status(422).json(err));
+          console.log(chalk.green("streamer saved"));
+          
+    
+          res.json({message: "streamer saved"})
+          
+        })
+        .catch(err => res.status(422).json(err));
+        
+      } else{
+        console.log(chalk.red("Streamer Already Exists"));
+      }
+    }).catch(function(err){
+      console.log(err);
+    });
+
+
   },
 
   saveGame: function(req, res) {
-    db.User
-    .update({ _id: req.session.passport.user}, 
-    {$push: 
-      {"games": 
-        { 
-          id: req.body.id,
-          name: req.body.name,
-          image: req.body.image
-        }
-      }
-    })
-    .then(dbModel => {
-      console.log(dbModel);
 
-      res.json({message: "streamer saved"})
-      
-    })
-    .catch(err => res.status(422).json(err));
+    db.User.findOne({ _id: req.session.passport.user, games: { $elemMatch: {id: req.body.id} }}).then(function(data){
+      if(!data){
+        db.User
+        .updateOne({ _id: req.session.passport.user}, 
+        {$push: 
+          {"games": 
+            { 
+              id: req.body.id,
+              name: req.body.name,
+              image: req.body.image
+            }
+          }
+        })
+        .then(dbModel => {
+          console.log(chalk.green("Game saved"));
+    
+          res.json({message: "Game saved"})
+          
+        })
+        .catch(err => res.status(422).json(err));
+      } else{
+        console.log(chalk.red("Game Already Exists"));
+      }
+    }).catch(function(err){
+      console.log(err);
+    });
   },
+    
+      userSavedInfo: function(req, res) {
+        db.User
+        .findOne({ _id: req.session.passport.user})
+        .then(dbModel => {
+          let resObj = {
+            streamers: dbModel.streamers,
+            games: dbModel.games
+          }
+    
+          res.json(resObj);
+        })
+        .catch(err => res.status(422).json(err));
 
-  userSavedInfo: function(req, res) {
-    db.User
-    .findOne({ _id: req.session.passport.user})
-    .then(dbModel => {
-      let resObj = {
-        streamers: dbModel.streamers,
-        games: dbModel.games
-      }
-
-      res.json(resObj);
-    })
-    .catch(err => res.status(422).json(err));
   },
 
   viewClips:  function(req, res) {
@@ -144,7 +163,7 @@ module.exports = {
       {$push: {"streamers.$.likedContent": req.body.likedContent}
       })
       .then(dbModel => {
-        console.log(dbModel);
+        console.log("streamer clip saved");
   
         res.json({message: "streamer clip saved"})
         
@@ -161,13 +180,54 @@ module.exports = {
       {$push: {"games.$.likedContent": req.body.likedContent}
       })
       .then(dbModel => {
-        console.log(dbModel);
+        console.log("game clip saved");
   
         res.json({message: "game clip saved"})
         
       })
       .catch(err => res.status(422).json(err));
     }
+  },
+
+  removeStreamerOrGame: function(req, res) {
+
+    if(req.params.type === "streamer"){
+      db.User
+        .updateOne({ _id: req.session.passport.user}, 
+        {$pull: 
+          {"streamers": 
+            { 
+              id: req.params.id
+            }
+          }
+        })
+        .then(dbModel => {
+          console.log(chalk.green("Streamer removed"));
+    
+          res.json({message: "Streamer removed"})
+          
+        })
+        .catch(err => res.status(422).json(err));
+    } else if ( req.params.type === "game" ){
+      db.User
+        .updateOne({ _id: req.session.passport.user}, 
+        {$pull: 
+          {"games": 
+            { 
+              id: req.params.id
+            }
+          }
+        })
+        .then(dbModel => {
+          console.log(chalk.green("Game removed"));
+    
+          res.json({message: "Game removed"})
+          
+        })
+        .catch(err => res.status(422).json(err));
+    }
+
+
   }
   
 };

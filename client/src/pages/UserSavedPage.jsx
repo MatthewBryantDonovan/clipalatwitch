@@ -8,7 +8,7 @@ function UserSavedPage() {
     const [clipData, setClipData] = useState()
     const [userData, setUserData] = useState()
 
-      useEffect(() => {
+    useEffect(() => {
         if(!userData){
             API.userSavedInfo().then(function(data){
                 console.log(data);
@@ -18,22 +18,36 @@ function UserSavedPage() {
             });
         }
         console.log(userData);
-      }, [userData])
+    }, [userData])
 
-      useEffect(() => {
+    useEffect(() => {
         console.log(clipData);
-      }, [clipData])
+    }, [clipData])
 
-      const viewClips = (type, id) => {
-        console.log("entered save");
-        
+    const viewClips = (type, id) => {
         API.viewClips(type, id).then(function(data){
             console.log(data);
             setClipData(data.data);
         }).catch(function(err){
             console.log(err);
         });
+    }
 
+    const removeStreamerOrGame = (type, id) => {
+        console.log("entered remove");
+        API.removeStreamerOrGame(type, id).then(function(data){
+            console.log(data);
+            /// FIXME: might be bad logic
+            API.userSavedInfo().then(function(data){
+                console.log(data);
+                setUserData(data.data)
+            }).catch(function(err){
+                console.log(err);
+            });
+             /// FIXME:
+        }).catch(function(err){
+            console.log(err);
+        });
     }
 
     return(<div>
@@ -46,6 +60,7 @@ function UserSavedPage() {
                             <p>{streamer.id}</p>
                             <p>{streamer.name}</p>
                             <button onClick={() => viewClips("streamer", streamer.id)}><img src={streamer.image}></img></button>
+                            <button onClick={() => removeStreamerOrGame("streamer", streamer.id)}>X</button>
                         </div>
                     )) : <div></div>}
                     <FollowSlick 
@@ -65,6 +80,7 @@ function UserSavedPage() {
                             <p>{game.id}</p>
                             <p>{game.name}</p>
                             <button onClick={() => viewClips("game", game.id)}><img src={game.image}></img></button>
+                            <button onClick={() => removeStreamerOrGame("game", game.id)}>X</button>
                         </div>
                     )) : <div></div>}
                     <FollowSlick 

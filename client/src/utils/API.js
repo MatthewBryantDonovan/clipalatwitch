@@ -5,9 +5,10 @@ export default {
       loginUser: (userData) => axios.post('/api/users/login', userData), //connected
       findStreamer: (streamer) => axios.get('/api/search/streamer/'+ streamer), //connected
       findGame: (game) => axios.get('/api/search/game/'+ game), //connected
-      saveStreamer: (reqObj) => axios.post('/api/saved/streamer', reqObj), //connected FIXME: duplicates work ATM
-      saveGame: (reqObj) => axios.post('/api/saved/game', reqObj), //connected FIXME: duplicates work ATM
+      saveStreamer: (reqObj) => axios.post('/api/saved/streamer', reqObj), //connected
+      saveGame: (reqObj) => axios.post('/api/saved/game', reqObj), //connected
       saveClip: (reqObj) => axios.post('/api/saved/clip', reqObj), // TODO: NOT CONNECTED FIXME: need to consider if passing game or streamer
       userSavedInfo: () => axios.get('/api/saved'), //connected
-      viewClips: (type, id) => axios.get('/api/saved/clips/' + type + '/'+ id) // connected
+      viewClips: (type, id) => axios.get('/api/saved/clips/' + type + '/'+ id) ,// connected
+      removeStreamerOrGame: (type, id) => axios.post('/api/saved/delete/' + type + '/'+ id) // connected
 };
