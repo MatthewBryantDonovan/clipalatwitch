@@ -67,16 +67,21 @@ module.exports = {
   },
 
   logout: function(req, res) {
-    console.log(req.session.passport);
-    if(req.session.passport.user){
-      console.log("user exists");
-      req.logOut();
-      console.log("logout happened");
+    if(req.session.passport){
+      console.log(req.session.passport);
+      if(req.session.passport.user){
+        console.log("user exists");
+        req.logOut();
+        console.log("logout happened");
+        res.json("User Logout");
+      } else {
+        console.log("user didn't exist");
+        res.status(422).json("No user logged in")
+      }
     } else {
-      console.log("user didn't exist");
+      res.status(422).json("No user logged in")
     }
-    
-    res.redirect("/login");
+
   }
   
 };

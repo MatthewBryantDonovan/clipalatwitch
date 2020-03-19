@@ -33,7 +33,7 @@ function Routing() {
                   i: 'favorite',
             },
             {
-                  path: '/login',
+                  path: '/logout',
                   name: 'Logout',
                   i: 'person',
             }
@@ -51,7 +51,7 @@ function Routing() {
                   i: 'create'
             },
             {
-                  path: '/logout',
+                  path: '/login',
                   name: 'Login',
                   i: 'person'
             },
@@ -65,7 +65,7 @@ function Routing() {
 
       return (
             <Router>
-                  <Sidenav routes={routes} />
+                  <Sidenav routes={routes} logoutRoutes={loginRoutesChangedBack} />
 
                   <Route
                         path='/'
