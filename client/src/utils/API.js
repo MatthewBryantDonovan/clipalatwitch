@@ -10,5 +10,6 @@ export default {
       saveClip: (reqObj) => axios.post('/api/saved/clip', reqObj), // TODO: NOT CONNECTED FIXME: need to consider if passing game or streamer
       userSavedInfo: () => axios.get('/api/saved'), //connected
       viewClips: (type, id) => axios.get('/api/saved/clips/' + type + '/'+ id) ,// connected
-      removeStreamerOrGame: (type, id) => axios.post('/api/saved/delete/' + type + '/'+ id) // connected
+      removeStreamerOrGame: (type, id) => axios.post('/api/saved/delete/' + type + '/'+ id), // connected
+      logout: () => axios.delete('/api/users/logout')
 };
