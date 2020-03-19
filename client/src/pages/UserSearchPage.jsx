@@ -93,6 +93,7 @@ function UserSearchPage () {
                     <p>{clipData.streamerID}</p>
                     <img src={clipData.streamerImage}></img>
                     <button type="button" className="btn" onClick={() => save("streamer")}><i className="material-icons" style={{color: '#008080'}}>favorite</i></button>
+                    <ClipSlick clipData={clipData} />
                 </div>
                 :
                 <div>
@@ -100,12 +101,12 @@ function UserSearchPage () {
                     <p>{clipData.gameID}</p>
                     <img src={clipData.gameImage}></img>
                     <button type="button" className="btn" onClick={() => save("game")}><i className="material-icons" style={{color: '#008080'}}>favorite</i></button>
+                    <ClipSlick clipData={clipData} />
                 </div>
                 :
             <div></div>
             }
 
-            <ClipSlick clipData={clipData} />
             
         </div>
     </div>
