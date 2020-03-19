@@ -14,6 +14,7 @@ module.exports = {
   //   username: req.body.username
   // }
   saveStreamer: function(req, res) {
+
     db.User.findOne({ _id: req.session.passport.user, streamers: { $elemMatch: {id: req.body.id} }}).then(function(data){
       if(!data){
         db.User

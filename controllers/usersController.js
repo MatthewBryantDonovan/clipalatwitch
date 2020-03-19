@@ -54,8 +54,29 @@ module.exports = {
     //   failureFlash: true
     // })
 
-    passport.authenticate('local')
+    // console.log("here");
     
+    // passport.authenticate('local', 
+    // {
+    //   successRedirect: "/",
+    //   failureRedirect: "/login",
+    //   failureFlash: true
+    // }
+    // );
+    
+  },
+
+  logout: function(req, res) {
+    console.log(req.session.passport);
+    if(req.session.passport.user){
+      console.log("user exists");
+      req.logOut();
+      console.log("logout happened");
+    } else {
+      console.log("user didn't exist");
+    }
+    
+    res.redirect("/login");
   }
   
 };

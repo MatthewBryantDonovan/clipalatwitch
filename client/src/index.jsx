@@ -33,7 +33,7 @@ function Routing() {
                   i: 'favorite',
             },
             {
-                  path: '/logout',
+                  path: '/login',
                   name: 'Logout',
                   i: 'person',
             }
@@ -51,7 +51,7 @@ function Routing() {
                   i: 'create'
             },
             {
-                  path: '/login',
+                  path: '/logout',
                   name: 'Login',
                   i: 'person'
             },
@@ -61,6 +61,8 @@ function Routing() {
             
       const loginRoutesChanged = () => setRoutes(acctRoutes);
 
+      const loginRoutesChangedBack = () => setRoutes(noAcctRoutes);
+
       return (
             <Router>
                   <Sidenav routes={routes} />
@@ -68,12 +70,12 @@ function Routing() {
                   <Route
                         path='/'
                         exact={true}
-                        component={() => <Redirect to="/home" />}
+                        component={() => <Redirect to="/home" loginRoutes={loginRoutesChangedBack} />}
                   />
 
                   <Route
                         path='/home'
-                        component={() => <Home />}
+                        component={() => <Home loginRoutes={loginRoutesChangedBack}/>}
                   />
 
                   <Route
@@ -94,6 +96,11 @@ function Routing() {
                   <Route
                         path='/saved'
                         component={() => <UserSavedPage routes={routes} loginRoutes={loginRoutesChanged} />}
+                  />
+
+                  <Route
+                        path='/logout'
+                        component={() => <UserSavedPage routes={routes} loginRoutes={loginRoutesChangedBack} />}
                   />
 
             </Router>

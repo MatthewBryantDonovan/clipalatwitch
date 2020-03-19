@@ -77,37 +77,27 @@ function checkNotAuthenticated(req, res, next) {
   next();
 }
 
-
-
-// ////// FIXME: test
-app.post("/api/users/login", passport.authenticate('local', 
-{
-  successRedirect: "/",
-  failureRedirect: "/login",
-  failureFlash: true
-}
-));
 ///////////////////////////////// FIXME: END TEST
 
-app.delete("/logout", (req, res) => {
-    console.log(req.session.passport);
-    if(req.session.passport.user){
-      console.log(true);
-    } else {
-      console.log(false);
-    }
+// app.delete("/logout", (req, res) => {
+//     console.log(req.session.passport);
+//     if(req.session.passport.user){
+//       console.log(true);
+//     } else {
+//       console.log(false);
+//     }
     
-    console.log("logout happened");
+//     console.log("logout happened");
     
     
-    req.logOut();
-    res.redirect("/login");
-    if(req.session.passport.user){
-      console.log(true);
-    } else {
-      console.log(false);
-    }
-});
+//     req.logOut();
+//     res.redirect("/login");
+//     if(req.session.passport.user){
+//       console.log(true);
+//     } else {
+//       console.log(false);
+//     }
+// });
 
 app.use(routes);
 
