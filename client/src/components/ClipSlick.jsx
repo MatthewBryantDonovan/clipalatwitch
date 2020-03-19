@@ -35,7 +35,7 @@ function ClipSlick(props) {
           <Slider {...settings}>
           { (props.clipData) ? props.clipData.clips.map((clip, index) => (
                 <div id={clip.id}  key={index}>
-                    <iframe src={clip.embed_url + "&autoplay=false"} height="200" width="300"></iframe>
+                    <iframe src={clip.embed_url + "&autoplay=false"} height="200" width="300" allowFullScreen></iframe>
                 </div>
             )) : <div></div>}
           </Slider>
