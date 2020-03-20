@@ -1,12 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import UserSearchForm from "../components/UserSearchForm";
 import ClipSlick from "../components/ClipSlick";
 import API from "../utils/API"
 
-function UserSearchPage () {
+function UserSearchPage (props) {
     const [clipData, setClipData] = useState()
+    const [userData, setUserData] = useState()
+    const [notAuthed, setNotAuthed] = useState(false)
 
       useEffect(() => {
+        if (!userData) {
+            API.userSavedInfo().then(function (data) {
+                console.log(data);
+                setUserData(data.data)
+            }).catch(function (err) {
+                console.log(err);
+                setNotAuthed(true);
+                props.logoutRoutes();
+            });
+        }
         console.log(clipData);
       }, [clipData])
 
@@ -70,6 +83,7 @@ function UserSearchPage () {
     
     return(
     <div>
+        {notAuthed && <Redirect to="/login" />}
     <div className="container">
         <p>I am the UserSearchPage</p>
         <div className="row">

@@ -16,7 +16,7 @@ function FollowSlick(props) {
 
     return(
         <div className="center">
-          <Slider {...settings} style={{width: "82.5%"}}>
+          <Slider {...settings} style={ (window.innerWidth < 900) ? {width: "82.5vw"} : {width: "100%"}}>
           { props.data.map((item, index) => (
                 <div id={item.id}  key={index}>
                     <button onClick={() => props.view(props.type.toString(), item.id)}><img height="125" width="100" src={item.image}></img></button>

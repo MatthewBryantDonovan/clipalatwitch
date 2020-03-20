@@ -15,7 +15,7 @@ function ClipSlick(props) {
 
   useEffect(() => {
     getSize()
-    if(windowSize < 500) {
+    if(windowSize < 599) {
       setSlides(1)
     }
   }, [windowSize])
@@ -27,7 +27,6 @@ function ClipSlick(props) {
         accessibility: true,
         lazyLoad: true,
         swipeToSlide: true,
-        variableWidth: true
       };
 
       return (

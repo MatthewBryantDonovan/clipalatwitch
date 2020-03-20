@@ -14,23 +14,40 @@ import API from '../utils/API'
 
 function Sidenav(props) {
 
+      const [userData, setUserData] = useState()
       const [routes, setRoutes] = useState(props.routes)
       const [redirect, setRedirect] = useState(false);
 
+      useEffect(() => {
+            if (!userData) {
+                  API.userSavedInfo().then(function (data) {
+                        console.log(data);
+                        setUserData(data.data)
+                        props.loginRoutes()
+                  }).catch(function (err) {
+                        console.log(err);
+                        props.logoutRoutes();
+                  });
+            }
+            console.log(userData);
+      }, [userData, props.routes])
+
       const logout = () => {
             console.log("entered logout");
-            API.logout().then(function(data){
-                console.log(data);
-                console.log("Logout Occurred");
-                setRedirect(true);
-            }).catch(function(err){
-                console.log(err);
+            API.logout().then(function (data) {
+                  console.log(data);
+                  console.log("Logout Occurred");
+                  setUserData(false)
+                  setRedirect(true);
+            }).catch(function (err) {
+                  console.log(err);
             });
       }
 
-      useEffect(()=> {
-            if(redirect === true) {
+      useEffect(() => {
+            if (redirect === true) {
                   props.logoutRoutes()
+                  setRedirect(false);
             }
       }, [redirect])
 
@@ -51,16 +68,17 @@ function Sidenav(props) {
                         <a href="#" data-target="slide-out" className="sidenav-trigger show-on-large" ><i className="material-icons nav-head-icon">menu</i></a>
                   </nav>
                   <ul id="slide-out" className="sidenav">
-                        <li><div className="user-view">
-                              <a href="#user"><img className="circle" src="https://lowbrowcomics.files.wordpress.com/2016/02/x-23-target-x-006-008.jpg" alt="placeholder" /></a>
-                              <a href="#name"><span className="white-text name">John Doe</span></a>
-                              <a href="#email"><span className="white-text email">jdandturk@gmail.com</span></a>
-                        </div></li>
+                       {
+                             (userData)?  <li><div className="user-view">
+                             <a href="#user"><img className="circle" src={userData.userImage} alt="placeholder" /></a>
+                             <a href="#name"><span className="white-text name">{userData.username}</span></a>
+                       </div></li> : <div></div>
+                       }
                         {props.routes.map((route, index) => (
-                              (route.path !== '/logout') ? 
-                              <li key={index}><Link to={route.path} className="sidenav-close" ><i className="material-icons" style={{color: '#66fcf1'}} >{route.i}</i>{route.name}</Link></li>
-                              :
-                              <li key={index} onClick={()=> logout()} ><Link to="/login" className="sidenav-close" ><i className="material-icons" style={{color: '#66fcf1'}} >{route.i}</i>{route.name}</Link></li>
+                              (route.path !== '/logout') ?
+                                    <li key={index}><Link to={route.path} className="sidenav-close" ><i className="material-icons" style={{ color: '#66fcf1' }} >{route.i}</i>{route.name}</Link></li>
+                                    :
+                                    <li key={index} onClick={() => logout()} ><Link to="/login" className="sidenav-close" ><i className="material-icons" style={{ color: '#66fcf1' }} >{route.i}</i>{route.name}</Link></li>
                         ))}
                   </ul>
             </React.Fragment>

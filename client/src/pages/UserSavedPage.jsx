@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import FollowSlick from "../components/FollowSlick";
 import ClipSlick from "../components/ClipSlick";
 import API from '../utils/API';
 
-function UserSavedPage() {
+function UserSavedPage(props) {
 
     const [clipData, setClipData] = useState()
     const [userData, setUserData] = useState()
+    const [notAuthed, setNotAuthed] = useState(false)
 
     useEffect(() => {
         if (!userData) {
@@ -15,6 +17,8 @@ function UserSavedPage() {
                 setUserData(data.data)
             }).catch(function (err) {
                 console.log(err);
+                setNotAuthed(true);
+                props.logoutRoutes();
             });
         }
         console.log(userData);
@@ -50,7 +54,9 @@ function UserSavedPage() {
         });
     }
 
-    return (<div>
+    return (
+    <div>
+        {notAuthed && <Redirect to="/login" />}
         <div className="container">
             <h1>I am the UserSavedPage</h1>
             <div className="row">

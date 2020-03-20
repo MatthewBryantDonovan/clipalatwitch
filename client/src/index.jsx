@@ -65,17 +65,17 @@ function Routing() {
 
       return (
             <Router>
-                  <Sidenav routes={routes} logoutRoutes={loginRoutesChangedBack} />
+                  <Sidenav routes={routes} logoutRoutes={loginRoutesChangedBack} loginRoutes={loginRoutesChanged} />
 
                   <Route
                         path='/'
                         exact={true}
-                        component={() => <Redirect to="/home" loginRoutes={loginRoutesChangedBack} />}
+                        component={() => <Redirect to="/home" loginRoutes={loginRoutesChanged} />}
                   />
 
                   <Route
                         path='/home'
-                        component={() => <Home loginRoutes={loginRoutesChangedBack}/>}
+                        component={() => <Home loginRoutes={loginRoutesChanged}/>}
                   />
 
                   <Route
@@ -90,17 +90,17 @@ function Routing() {
 
                   <Route
                         path='/search'
-                        component={() => <UserSearchPage routes={routes} loginRoutes={loginRoutesChanged} />}
+                        component={() => <UserSearchPage routes={routes} loginRoutes={loginRoutesChanged} logoutRoutes={loginRoutesChangedBack} />}
                   />
 
                   <Route
                         path='/saved'
-                        component={() => <UserSavedPage routes={routes} loginRoutes={loginRoutesChanged} />}
+                        component={() => <UserSavedPage routes={routes} loginRoutes={loginRoutesChanged} logoutRoutes={loginRoutesChangedBack}  />}
                   />
 
                   <Route
                         path='/logout'
-                        component={() => <UserSavedPage routes={routes} loginRoutes={loginRoutesChangedBack} />}
+                        component={() => <UserSavedPage routes={routes} loginRoutes={loginRoutesChanged} />}
                   />
 
             </Router>
