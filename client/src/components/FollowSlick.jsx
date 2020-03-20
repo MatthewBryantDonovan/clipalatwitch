@@ -5,6 +5,30 @@ import "slick-carousel/slick/slick-theme.css";
 
 function FollowSlick(props) {
 
+  let [width, setWidth] = useState(window.innerWidth);
+
+  // in this case useEffect will execute only once because
+  // it does not have any dependencies.
+  useEffect(() => {
+    const resizeListener = () => {
+      // change width from the state object
+      setWidth(window.innerWidth)
+
+      console.log(width);
+      
+      
+    };
+    // set resize listener
+    window.addEventListener('resize', resizeListener);
+
+    // clean up function
+    return () => {
+      // remove resize listener
+      window.removeEventListener('resize', resizeListener);
+    }
+  }, [])
+////////////////TODO: current width code 
+
     const settings = {
         speed: 200,
         slidesToShow: (props.data.length < 3 ) ? props.data.length : 3,
@@ -15,7 +39,7 @@ function FollowSlick(props) {
 
     return(
         <div className="center">
-          <Slider {...settings} style={ (window.innerWidth < 900) ? {width: "82.5vw"} : {width: "100%"}}>
+          <Slider {...settings} style={ (window.innerWidth < 900) ? {width: ((width*0.79)+"px")} : {width: "100%"}}>
           { props.data.map((item, index) => (
                 <div id={item.id}  key={index}>
                     <button onClick={() => props.view(props.type.toString(), item.id)}><img height="125" width="100" src={item.image}></img></button>
