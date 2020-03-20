@@ -5,41 +5,21 @@ import "slick-carousel/slick/slick-theme.css";
 
 function FollowSlick(props) {
 
-    // const isClient = typeof window === 'object';
-  
-    // function getSize() {
-    //   return isClient ? window.innerWidth : undefined;
-    // }
-  
-//     const [windowSize, setWindowSize] = useState(getSize);
-//     const [slides, setSlides] = useState(3);
-
-//   useEffect(() => {
-//     getSize()
-//     if(windowSize < 500) {
-//       setSlides(1)
-//     }
-//   }, [windowSize])
-    console.log(props)
-
     const settings = {
         dots: true,
-        infinite: true,
         speed: 200,
-        slidesToShow: 3,
-        slidesToScroll: 3,
+        slidesToShow: (props.data.length < 3 ) ? props.data.length : 3,
+        slidesToScroll: (props.data.length < 3 ) ? props.data.length : 3,
         accessibility: true,
-        lazyLoad: true,
-        swipeToSlide: true,
-        variableWidth: true
+        swipeToSlide: true
       };
 
     return(
         <div className="center">
-          <Slider {...settings}>
+          <Slider {...settings} style={{width: "82.5%"}}>
           { props.data.map((item, index) => (
                 <div id={item.id}  key={index}>
-                    <button onClick={() => props.view(props.type.toString(), item.id)}><img height="50" width="50"  src={item.image}></img></button>
+                    <button onClick={() => props.view(props.type.toString(), item.id)}><img height="125" width="100" src={item.image}></img></button>
                     <button onClick={() => props.remove(props.type.toString(), item.id)}>X</button>
                 </div>
             )) }

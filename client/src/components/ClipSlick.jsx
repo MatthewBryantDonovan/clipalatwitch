@@ -21,13 +21,13 @@ function ClipSlick(props) {
   }, [windowSize])
     const settings = {
         dots: true,
-        infinite: true,
         speed: 200,
         slidesToShow: slides,
         slidesToScroll: slides,
         accessibility: true,
         lazyLoad: true,
         swipeToSlide: true,
+        variableWidth: true
       };
 
       return (

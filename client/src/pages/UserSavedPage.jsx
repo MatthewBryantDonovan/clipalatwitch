@@ -73,13 +73,13 @@ function UserSavedPage() {
             </div>
             <div className="row">
                 <div className="col m12">
-                    {/* {(userData) ? (
+                    {(userData) ? (
                         <FollowSlick
                             data={userData.games}
                             type={"game"}
                             remove={removeStreamerOrGame}
                             view={viewClips}
-                        />) : <div></div>} */}
+                        />) : <div></div>}
 
                 </div>
             </div>
