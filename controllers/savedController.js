@@ -84,7 +84,9 @@ module.exports = {
         .then(dbModel => {
           let resObj = {
             streamers: dbModel.streamers,
-            games: dbModel.games
+            games: dbModel.games,
+            username: dbModel.username,
+            userImage: dbModel.userImage
           }
     
           res.json(resObj);
