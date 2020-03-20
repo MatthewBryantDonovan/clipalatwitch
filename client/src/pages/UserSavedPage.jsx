@@ -52,7 +52,6 @@ function UserSavedPage() {
 
     return (<div>
         <div className="container">
-            <h1>I am the UserSavedPage</h1>
             <div className="row">
                 <div className="col m12">
                     {(userData) ? (
@@ -68,7 +67,7 @@ function UserSavedPage() {
             </div>
             <div className="row">
                 <div className="col m12">
-                    <ClipSlick clipData={clipData} />
+                    {(clipData) ? <ClipSlick clipData={clipData} /> : <div style={ {height: "205px"}}></div>}
                 </div>
             </div>
             <div className="row">

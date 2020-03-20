@@ -20,7 +20,6 @@ function ClipSlick(props) {
     }
   }, [windowSize])
     const settings = {
-        dots: true,
         speed: 200,
         slidesToShow: slides,
         slidesToScroll: slides,

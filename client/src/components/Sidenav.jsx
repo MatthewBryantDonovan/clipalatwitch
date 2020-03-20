@@ -31,6 +31,7 @@ function Sidenav(props) {
       useEffect(()=> {
             if(redirect === true) {
                   props.logoutRoutes()
+                  setRedirect(false);
             }
       }, [redirect])
 
