@@ -8,6 +8,7 @@ function Login(props) {
       const [username, setUsername] = useState({});
       const [redirect, setRedirect] = useState(false);
       const [password, setPassword] = useState({});
+      const [loginFail, setLoginFail] = useState(false);
 
 
       function updateUsername(e) {
@@ -28,8 +29,12 @@ function Login(props) {
             }
 
             API.loginUser(object).then(function(data){
-                  setRedirect(true)
-                  console.log(data);
+                  API.userSavedInfo().then(function (data) {
+                        setRedirect(true);
+                  }).catch(function (err) {
+                        console.log("failed login");
+                        setLoginFail("Username or Password was incorrect.");
+                  });
             }).catch(function(err){
                   console.log(err);
             });
@@ -38,7 +43,7 @@ function Login(props) {
       
       useEffect(()=> {
             if(redirect === true) {
-                  props.loginRoutes()
+                  props.loginRoutes();
             }
       }, [redirect])
 
@@ -55,6 +60,7 @@ function Login(props) {
                               <button type="submit" className="btn" >Login</button>
                         </form>
                         <p>Don't have an account? creat one <Link className="linkText" to="/register">here!</Link> </p>
+                        { (loginFail) ? <strong><p style={{color: "Red", fontSize: "2em"}}> {loginFail} </p></strong> : <span></span>}
                   </div>
             </React.Fragment>
       )

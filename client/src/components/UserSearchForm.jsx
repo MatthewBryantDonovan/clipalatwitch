@@ -20,6 +20,8 @@ function UserSearchForm(props) {
             <input type="text" id="name" onChange={updateName} required  />
             <button type="submit" className="btn" >Search</button>
         </form>
-    </div>)}
+    </div>)
+    
+}
 
 export default UserSearchForm

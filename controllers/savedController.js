@@ -78,21 +78,25 @@ module.exports = {
     });
   },
     
-      userSavedInfo: function(req, res) {
-        db.User
-        .findOne({ _id: req.session.passport.user})
-        .then(dbModel => {
-          let resObj = {
-            streamers: dbModel.streamers,
-            games: dbModel.games,
-            username: dbModel.username,
-            userImage: dbModel.userImage
-          }
-    
-          res.json(resObj);
-        })
-        .catch(err => res.status(422).json(err));
+  userSavedInfo: function(req, res) {
 
+    if (req.session.passport){
+      db.User
+      .findOne({ _id: req.session.passport.user})
+      .then(dbModel => {
+        let resObj = {
+          streamers: dbModel.streamers,
+          games: dbModel.games,
+          username: dbModel.username,
+          userImage: dbModel.userImage
+        }
+  
+        res.json(resObj);
+      })
+      .catch(err => res.status(422).json(err));
+    } else {
+      res.status(422).json("user is not authenticated");
+    }
   },
 
   viewClips:  function(req, res) {
@@ -106,15 +110,15 @@ module.exports = {
               'Client-ID': process.env.TWITCH_API_KEY
           }
       }).then(function (response) {
-        console.log(response.data.data);
+        // console.log(response.data.data);
 
         let resObject = {
           clips: response.data.data,
         }
 
-        console.log(chalk.bgRed("~~~~~~~~ resObject Start ~~~~~~~~"));
-        console.log(resObject);
-        console.log(chalk.bgRed("~~~~~~~~ resObject End ~~~~~~~~"));
+        // console.log(chalk.bgRed("~~~~~~~~ resObject Start ~~~~~~~~"));
+        // console.log(resObject);
+        // console.log(chalk.bgRed("~~~~~~~~ resObject End ~~~~~~~~"));
 
         res.json(resObject)
       }).catch(function (err) {
@@ -129,15 +133,15 @@ module.exports = {
               'Client-ID': process.env.TWITCH_API_KEY
           }
       }).then(function (response) {
-        console.log(response.data.data);
+        // console.log(response.data.data);
 
         let resObject = {
           clips: response.data.data,
         }
 
-        console.log(chalk.bgRed("~~~~~~~~ resObject Start ~~~~~~~~"));
-        console.log(resObject);
-        console.log(chalk.bgRed("~~~~~~~~ resObject End ~~~~~~~~"));
+        // console.log(chalk.bgRed("~~~~~~~~ resObject Start ~~~~~~~~"));
+        // console.log(resObject);
+        // console.log(chalk.bgRed("~~~~~~~~ resObject End ~~~~~~~~"));
 
         res.json(resObject)
       }).catch(function (err) {

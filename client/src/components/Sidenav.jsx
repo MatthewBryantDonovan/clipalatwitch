@@ -21,17 +21,14 @@ function Sidenav(props) {
       useEffect(() => {
             if (!userData) {
                   API.userSavedInfo().then(function (data) {
-                        console.log(data);
                         setUserData(data.data)
                         props.loginRoutes()
                   }).catch(function (err) {
-                        console.log(err);
                         if (props.routes.length !== 3){
                               props.logoutRoutes();
                         }
                   });
             }
-            console.log(userData);
       }, [userData, props.routes])
       
 
