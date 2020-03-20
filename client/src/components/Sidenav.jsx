@@ -26,11 +26,14 @@ function Sidenav(props) {
                         props.loginRoutes()
                   }).catch(function (err) {
                         console.log(err);
-                        props.logoutRoutes();
+                        if (props.routes.length !== 3){
+                              props.logoutRoutes();
+                        }
                   });
             }
             console.log(userData);
       }, [userData, props.routes])
+      
 
       const logout = () => {
             console.log("entered logout");
@@ -46,7 +49,7 @@ function Sidenav(props) {
 
       useEffect(() => {
             if (redirect === true) {
-                  props.logoutRoutes()
+                  props.logoutRoutes();
                   setRedirect(false);
             }
       }, [redirect])
