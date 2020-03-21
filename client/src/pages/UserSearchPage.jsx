@@ -44,6 +44,23 @@ function UserSearchPage (props) {
         }
     }
 
+    const removeStreamerOrGame = (type, id) => {
+        console.log("entered remove");
+        API.removeStreamerOrGame(type, id).then(function (data) {
+            console.log(data);
+            /// FIXME: might be bad logic
+            API.userSavedInfo().then(function (data) {
+                console.log(data);
+                setUserData(data.data)
+            }).catch(function (err) {
+                console.log(err);
+            });
+            /// FIXME:
+        }).catch(function (err) {
+            console.log(err);
+        });
+    }
+
     const save = (type) => {
         console.log("entered save");
         
@@ -60,6 +77,12 @@ function UserSearchPage (props) {
             API.saveStreamer(reqObj).then(function(data){
                 console.log(data);
                 console.log("Streamer Saved");
+                API.userSavedInfo().then(function (data) {
+                    console.log(data);
+                    setUserData(data.data)
+                }).catch(function (err) {
+                    console.log(err);
+                });
             }).catch(function(err){
                 console.log(err);
             });
@@ -76,6 +99,12 @@ function UserSearchPage (props) {
             API.saveGame(reqObj).then(function(data){
                 console.log(data);
                 console.log("Game Saved");
+                API.userSavedInfo().then(function (data) {
+                    console.log(data);
+                    setUserData(data.data)
+                }).catch(function (err) {
+                    console.log(err);
+                });
             }).catch(function(err){
                 console.log(err);
             });
@@ -113,7 +142,11 @@ function UserSearchPage (props) {
                     {/* <p>{clipData.streamerName}</p> */}
                     {/* <p>{clipData.streamerID}</p> */}
                     <img src={clipData.streamerImage} height="125" width="100"></img>
-                    <button type="button" className="btn" onClick={() => save("streamer")}><i className="material-icons" style={{color: '#008080'}}>favorite</i></button>
+                    {(userData.streamers.some(streamer => streamer.id === clipData.streamerID)) ? 
+                    <button type="button" className="btn" onClick={() => removeStreamerOrGame("streamer", clipData.streamerID)}><i className="material-icons" style={{color: '#008080'}}>favorite</i></button>
+                    :
+                    <button type="button" className="btn" onClick={() => save("streamer")}><i className="material-icons" style={{color: '#008080'}}>favorite_border</i></button>
+                    }
                     <ClipSlick clipData={clipData} />
                 </div>
                 :
@@ -121,7 +154,11 @@ function UserSearchPage (props) {
                     {/* <p>{clipData.gameName}</p> */}
                     {/* <p>{clipData.gameID}</p> */}
                     <img src={clipData.gameImage} height="125" width="100"></img>
-                    <button type="button" className="btn" onClick={() => save("game")}><i className="material-icons" style={{color: '#008080'}}>favorite</i></button>
+                    {(userData.games.some(game => game.id === clipData.gameID)) ? 
+                    <button type="button" className="btn" onClick={() => removeStreamerOrGame("game", clipData.gameID)}><i className="material-icons" style={{color: '#008080'}}>favorite</i></button>
+                    :
+                    <button type="button" className="btn" onClick={() => save("game")}><i className="material-icons" style={{color: '#008080'}}>favorite_border</i></button>
+                    }
                     <ClipSlick clipData={clipData} />
                 </div>
                 :

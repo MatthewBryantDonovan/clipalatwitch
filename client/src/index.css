@@ -45,7 +45,15 @@ input {
   width: 100px;
   border: none;
   background-color: #66fcf1;
-  margin-top: 2px;
+  margin-top: 5px;
+}
+
+.like {
+  width: 55%;
+  border: none;
+  background-color: #66fcf1;
+  margin-top: 5px;
+  cursor: pointer;
 }
 
 .btn-img, .btn-img:active, .btn-img:focus  {
