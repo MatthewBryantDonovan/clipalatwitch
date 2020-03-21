@@ -17,7 +17,7 @@ module.exports = {
       let streamerID = response.data.data[0].id;
       let streamerDisplay_Name = response.data.data[0].display_name;
       let streamerProfile_Image_Url = response.data.data[0].profile_image_url;
-      console.log(response.data.data[0]);
+      // console.log(response.data.data[0]);
 
       let x_query_clips = "https://api.twitch.tv/helix/clips?broadcaster_id=" + (streamerID);
 
@@ -26,7 +26,7 @@ module.exports = {
               'Client-ID': process.env.TWITCH_API_KEY
           }
       }).then(function (response) {
-        console.log(response.data.data);
+        // console.log(response.data.data);
 
         let resObject = {
           clips: response.data.data,
@@ -35,9 +35,9 @@ module.exports = {
           streamerImage: streamerProfile_Image_Url
         }
 
-        console.log(chalk.bgRed("~~~~~~~~ resObject Start ~~~~~~~~"));
-        console.log(resObject);
-        console.log(chalk.bgRed("~~~~~~~~ resObject End ~~~~~~~~"));
+        // console.log(chalk.bgRed("~~~~~~~~ resObject Start ~~~~~~~~"));
+        // console.log(resObject);
+        // console.log(chalk.bgRed("~~~~~~~~ resObject End ~~~~~~~~"));
 
         res.json(resObject)
 
@@ -53,8 +53,14 @@ module.exports = {
 
   //size of games blow in replace function calls
   searchGame: function(req, res) {
-    let gameQueryName = req.params.game;
+    let gameQueryName = encodeURIComponent(req.params.game).toLowerCase();
+    if(gameQueryName.toLowerCase()){
+      gameQueryName = gameQueryName.replace("pokemon", "pok%C3%A9mon")
+    }
     let x_query_game = "https://api.twitch.tv/helix/games?name=" + (gameQueryName);
+
+    console.log(x_query_game);
+    
 
     axios.get((x_query_game), {
         headers: {
@@ -74,7 +80,7 @@ module.exports = {
                 'Client-ID': process.env.TWITCH_API_KEY
             }
         }).then(function (response) {
-          console.log(response.data.data);
+          // console.log(response.data.data);
   
           let resObject = {
             clips: response.data.data,
@@ -83,9 +89,9 @@ module.exports = {
             gameImage: streamerBox_Art_Url
           }
   
-          console.log(chalk.bgRed("~~~~~~~~ resObject Start ~~~~~~~~"));
-          console.log(resObject);
-          console.log(chalk.bgRed("~~~~~~~~ resObject End ~~~~~~~~"));
+          // console.log(chalk.bgRed("~~~~~~~~ resObject Start ~~~~~~~~"));
+          // console.log(resObject);
+          // console.log(chalk.bgRed("~~~~~~~~ resObject End ~~~~~~~~"));
   
           res.json(resObject)
         }).catch(function (err) {

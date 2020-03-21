@@ -6,11 +6,10 @@ function UserSearchForm(props) {
 
     function updateName(e) {
         const newVal = e.target.value;
-        setName(newVal)
+        setName(newVal);
     }
     
     return(<div>
-        <p>I am the UserSearchForm</p>
         <form action="submit" onSubmit={
             (e) => {e.preventDefault(); 
             props.submit( props.formType, name)
@@ -20,6 +19,8 @@ function UserSearchForm(props) {
             <input type="text" id="name" onChange={updateName} required  />
             <button type="submit" className="btn" >Search</button>
         </form>
-    </div>)}
+    </div>)
+    
+}
 
 export default UserSearchForm

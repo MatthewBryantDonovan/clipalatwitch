@@ -21,18 +21,20 @@ function Sidenav(props) {
       useEffect(() => {
             if (!userData) {
                   API.userSavedInfo().then(function (data) {
-                        console.log(data);
                         setUserData(data.data)
                         props.loginRoutes()
                   }).catch(function (err) {
-                        console.log(err);
                         if (props.routes.length !== 3){
                               props.logoutRoutes();
                         }
                   });
             }
-            console.log(userData);
       }, [userData, props.routes])
+
+      const changeImage = () => {
+            console.log("entered change img");
+            
+      }
       
 
       const logout = () => {
@@ -73,8 +75,8 @@ function Sidenav(props) {
                   <ul id="slide-out" className="sidenav">
                        {
                              (userData)?  <li><div className="user-view">
-                             <a href="#user"><img className="circle" src={userData.userImage} alt="placeholder" /></a>
-                             <a href="#name"><span className="white-text name">{userData.username}</span></a>
+                             <img className="circle" onClick={() => changeImage()} src={userData.userImage} alt="Click_To_Change_Image" />
+                             <span className="white-text name">{userData.username}</span>
                        </div></li> : <div></div>
                        }
                         {props.routes.map((route, index) => (

@@ -33,7 +33,13 @@ function Register(props) {
             }
 
             API.createUser(object).then(function(data){
-                  setRedirect(true)
+                  const loginObj = {username, password};
+                  API.loginUser(loginObj).then(function(data){
+                        
+                        setRedirect(true);
+                  }).catch(function(err){
+                        console.log(err);
+                  });
                   console.log(data);
             }).catch(function(err){
                   console.log(err);

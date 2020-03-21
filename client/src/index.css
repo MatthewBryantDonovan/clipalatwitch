@@ -40,3 +40,51 @@ nav {
 input {
   color: #ffffff;
 }
+
+.dislike {
+  width: 100px;
+  border: none;
+  background-color: #66fcf1;
+  margin-top: 5px;
+}
+
+.like {
+  width: 55%;
+  border: none;
+  background-color: #66fcf1;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.btn-img, .btn-img:active, .btn-img:focus  {
+  border: none;
+  background: none;
+}
+
+ .slick-arrow {
+  height: 125px;
+  background-color: #66fcf1;
+  color: #66fcf1;
+}
+ 
+.slick-arrow:hover {
+  height: 125px;
+  background-color: #66fcf1;
+  color: #66fcf1;
+}
+ 
+.slick-arrow:active {
+  height: 125px;
+  background-color: #66fcf1;
+  color: #66fcf1;
+}
+
+.slick-prev:before {
+  position: relative;
+  top: calc(50% - 10px);
+}
+
+.slick-next:before {
+  position: relative;
+  top: calc(50% - 10px);
+}

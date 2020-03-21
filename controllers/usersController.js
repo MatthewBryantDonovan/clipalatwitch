@@ -63,6 +63,10 @@ module.exports = {
     //   failureFlash: true
     // }
     // );
+
+    console.log("here");
+    
+    res.json("did it");
     
   },
 
