@@ -8,6 +8,7 @@ function UserSearchPage (props) {
     const [clipData, setClipData] = useState()
     const [userData, setUserData] = useState()
     const [notAuthed, setNotAuthed] = useState(false)
+    const [displaySearch, setDisplaySearch] = useState("streamer")
 
       useEffect(() => {
         if (!userData) {
@@ -27,14 +28,14 @@ function UserSearchPage (props) {
     const submit = (type, name) => {
 
         if (type === "Streamer"){
-            API.findStreamer(name).then(function(data){
+            API.findStreamer(encodeURIComponent(name)).then(function(data){
                 console.log(data);
                 setClipData(data.data)
             }).catch(function(err){
                 console.log(err);
             });
         } else if (type === "Game"){
-            API.findGame(name).then(function(data){
+            API.findGame(encodeURIComponent(name)).then(function(data){
                 console.log(data);
                 setClipData(data.data)
             }).catch(function(err){
@@ -85,35 +86,41 @@ function UserSearchPage (props) {
     <div>
         {notAuthed && <Redirect to="/login" />}
     <div className="container">
-        <p>I am the UserSearchPage</p>
         <div className="row">
+            <button className="col m6 btn" onClick={() => setDisplaySearch("streamer")}>Search Streamer</button>
+            <button className="col m6 btn" onClick={() => setDisplaySearch("game")}>Search Game</button>
+            {(displaySearch === "streamer") ? 
+            
             <div className="col m6">
                 <UserSearchForm 
                     formType={"Streamer"}
                     submit={submit}
                 />
             </div>
+            :
             <div className="col m6">
                 <UserSearchForm 
                     formType={"Game"}
                     submit={submit}
                 />
             </div>
+            
+            }
         </div>
         <div className="row">
             {(clipData) ? (clipData.streamerID) ? 
                 <div>
-                    <p>{clipData.streamerName}</p>
-                    <p>{clipData.streamerID}</p>
-                    <img src={clipData.streamerImage}></img>
+                    {/* <p>{clipData.streamerName}</p> */}
+                    {/* <p>{clipData.streamerID}</p> */}
+                    <img src={clipData.streamerImage} height="125" width="100"></img>
                     <button type="button" className="btn" onClick={() => save("streamer")}><i className="material-icons" style={{color: '#008080'}}>favorite</i></button>
                     <ClipSlick clipData={clipData} />
                 </div>
                 :
                 <div>
-                    <p>{clipData.gameName}</p>
-                    <p>{clipData.gameID}</p>
-                    <img src={clipData.gameImage}></img>
+                    {/* <p>{clipData.gameName}</p> */}
+                    {/* <p>{clipData.gameID}</p> */}
+                    <img src={clipData.gameImage} height="125" width="100"></img>
                     <button type="button" className="btn" onClick={() => save("game")}><i className="material-icons" style={{color: '#008080'}}>favorite</i></button>
                     <ClipSlick clipData={clipData} />
                 </div>

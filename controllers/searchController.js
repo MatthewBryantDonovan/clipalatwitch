@@ -53,8 +53,14 @@ module.exports = {
 
   //size of games blow in replace function calls
   searchGame: function(req, res) {
-    let gameQueryName = req.params.game;
+    let gameQueryName = encodeURIComponent(req.params.game).toLowerCase();
+    if(gameQueryName.toLowerCase()){
+      gameQueryName = gameQueryName.replace("pokemon", "pok%C3%A9mon")
+    }
     let x_query_game = "https://api.twitch.tv/helix/games?name=" + (gameQueryName);
+
+    console.log(x_query_game);
+    
 
     axios.get((x_query_game), {
         headers: {
