@@ -49,6 +49,19 @@ function ClipSlick(props) {
           { (props.clipData) ? props.clipData.clips.map((clip, index) => (
                 <div id={clip.id}  key={index}>
                     <iframe src={clip.embed_url + "&autoplay=false"} height={clipHeight} width={clipWidth} allowFullScreen></iframe>
+                    {(props.favoriteClip) ? 
+                      (props.type === "streamer") ?
+                        (props.userData.streamers.some(streamer => streamer.likedContent.includes(clip.embed_url))) ? 
+                          <div> You like it! </div>
+                          :
+                          <div><button onClick={() => props.favoriteClip(clip.embed_url)}>X</button></div> 
+                        :
+                        (props.userData.games.some(game => game.likedContent.includes(clip.embed_url))) ? 
+                          <div> You like it! </div>
+                          :
+                          <div><button onClick={() => props.favoriteClip(clip.embed_url)}>X</button></div> 
+                    : 
+                    <span> </span>}
                 </div>
             )) : <div></div>}
           </Slider>

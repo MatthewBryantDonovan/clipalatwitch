@@ -40,6 +40,7 @@ module.exports = {
         
       } else{
         console.log(chalk.red("Streamer Already Exists"));
+        res.status(422).json("Streamer Already Exists");
       }
     }).catch(function(err){
       console.log(err);
@@ -72,6 +73,7 @@ module.exports = {
         .catch(err => res.status(422).json(err));
       } else{
         console.log(chalk.red("Game Already Exists"));
+        res.status(422).json("Game Already Exists");
       }
     }).catch(function(err){
       console.log(err);
@@ -150,49 +152,60 @@ module.exports = {
     }
   },
 
-  //need to send the following object for clip
-  // {
-  //   "id": req.body.ID,
-  //   "type": req.body.type,
-  //   "likedContent": req.body.likedContent,
-  //   username: req.body.username
-  // }
   saveClip:  function(req, res) {
 
     if(req.body.type === "streamer"){
-      db.User
-      .update({ username: req.body.username,
-        streamers:
-          {
-            $elemMatch: {streamers: req.body.id} 
-          }
-      }, 
-      {$push: {"streamers.$.likedContent": req.body.likedContent}
-      })
-      .then(dbModel => {
-        console.log("streamer clip saved");
-  
-        res.json({message: "streamer clip saved"})
-        
-      })
-      .catch(err => res.status(422).json(err));
+      db.User.findOne({ _id: req.session.passport.user, streamers: { $elemMatch: {likedContent: req.body.clipID} } }).then(function(data){
+        if(!data){
+          db.User
+          .updateOne({ _id: req.session.passport.user,
+            streamers:
+              {
+                $elemMatch: {id: req.body.typeID} 
+              }
+          }, 
+          {$push: {"streamers.$.likedContent": req.body.clipID}
+          })
+          .then(dbModel => {
+            console.log("streamer clip saved");
+      
+            res.json({message: "streamer clip saved"})
+            
+          })
+          .catch(err => res.status(422).json(err));
+        } else{
+          console.log(chalk.red("Clip Exists"));
+          res.status(422).json("Clip Exists");
+        }
+      }).catch(function(err){
+        console.log(err);
+      });
     } else if ( req.body.type === "game" ){
-      db.User
-      .update({ username: req.body.username,
-        games:
-          {
-            $elemMatch: {games: req.body.id} 
-          }
-      }, 
-      {$push: {"games.$.likedContent": req.body.likedContent}
-      })
-      .then(dbModel => {
-        console.log("game clip saved");
-  
-        res.json({message: "game clip saved"})
-        
-      })
-      .catch(err => res.status(422).json(err));
+      db.User.findOne({ _id: req.session.passport.user, games: { $elemMatch: {likedContent: req.body.clipID} } }).then(function(data){
+        if(!data){
+          db.User
+          .updateOne({ _id: req.session.passport.user,
+            games:
+              {
+                $elemMatch: {id: req.body.typeID} 
+              }
+          }, 
+          {$push: {"games.$.likedContent": req.body.clipID}
+          })
+          .then(dbModel => {
+            console.log("game clip saved");
+      
+            res.json({message: "game clip saved"})
+            
+          })
+          .catch(err => res.status(422).json(err));
+        } else{
+          console.log(chalk.red("Clip Exists"));
+          res.status(422).json("Clip Exists");
+        }
+      }).catch(function(err){
+        console.log(err);
+      });
     }
   },
 

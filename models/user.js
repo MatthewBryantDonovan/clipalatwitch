@@ -11,13 +11,13 @@ const userSchema = new Schema({
     id: String,
     name: String,
     image: String,
-    likedContent: String
+    likedContent: [String]
   }],
   games: [{
     id: String,
     name: String,
     image: String,
-    likedContent: String
+    likedContent: [String]
   }],
   userSince: { type: Date, default: Date.now },
   lastLogin: { type: Date, default: Date.now }
