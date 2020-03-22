@@ -11,5 +11,6 @@ export default {
       userSavedInfo: () => axios.get('/api/saved'), //connected
       viewClips: (type, id) => axios.get('/api/saved/clips/' + type + '/'+ id) ,// connected
       removeStreamerOrGame: (type, id) => axios.post('/api/saved/delete/' + type + '/'+ id), // connected
-      logout: () => axios.delete('/api/users/logout') // connected
+      logout: () => axios.delete('/api/users/logout'), // connected
+      updateImage: () => axios.put('/api/users/updateimage') // connected
 };

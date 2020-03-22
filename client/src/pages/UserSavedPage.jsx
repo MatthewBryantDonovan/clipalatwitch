@@ -87,8 +87,8 @@ function UserSavedPage(props) {
     return (
     <div>
         {notAuthed && <Redirect to="/login" />}
-        <div className="container">
-            <div className="row">
+        <div className="container" style={{textAlign: "center"}}>
+            <div className="row" style={{marginTop: "10px"}}>
                 <div className="col m12">
                     {(userData) ? (
                         <FollowSlick
