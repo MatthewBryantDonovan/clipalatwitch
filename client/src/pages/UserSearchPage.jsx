@@ -116,8 +116,8 @@ function UserSearchPage (props) {
         {notAuthed && <Redirect to="/login" />}
     <div className="container">
         <div className="row">
-            <button className="col m6 btn" onClick={() => setDisplaySearch("streamer")}>Search Streamer</button>
-            <button className="col m6 btn" onClick={() => setDisplaySearch("game")}>Search Game</button>
+            <button className="col m6 s6 btn" onClick={() => setDisplaySearch("streamer")}>Search Streamer</button>
+            <button className="col m6 s6 btn" onClick={() => setDisplaySearch("game")}>Search Game</button>
             {(displaySearch === "streamer") ? 
             
             <div className="col m6">
@@ -136,9 +136,9 @@ function UserSearchPage (props) {
             
             }
         </div>
-        <div className="row">
+        <div className="row center">
             {(clipData) ? (clipData.streamerID) ? 
-                <div>
+                <div className="col m12 s12">
                     {/* <p>{clipData.streamerName}</p> */}
                     {/* <p>{clipData.streamerID}</p> */}
                     <img src={clipData.streamerImage} height="125" width="100"></img>

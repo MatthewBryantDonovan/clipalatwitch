@@ -2,9 +2,8 @@ const db = require("../models");
 const axios = require("axios");
 const chalk = require("chalk")
 
-// Defining methods for the booksController
+// Defining methods for the savedController
 module.exports = {
-
 
   // When saving a streamer/game the following object needs sent
   // {
@@ -31,9 +30,8 @@ module.exports = {
         .then(dbModel => {
 
           console.log(chalk.green("streamer saved"));
-          
     
-          res.json({message: "streamer saved"})
+          res.json({message: "streamer saved"});
           
         })
         .catch(err => res.status(422).json(err));
@@ -169,7 +167,51 @@ module.exports = {
           .then(dbModel => {
             console.log("streamer clip saved");
       
-            res.json({message: "streamer clip saved"})
+
+            //////////////////////START CLIP RIVER
+
+          db.ClipRiver.findOne({url: req.body.clipID})
+          .then(data => {
+            console.log(data);
+            if (!data){
+              console.log("ClipRiver DIDN't CONTAIN Clip");
+              
+
+              db.ClipRiver.create({url: req.body.clipID, value: 5, likedUsers: [req.session.passport.user]})
+              .then(dbModel => {
+                console.log(chalk.green("ClipRiver Created Clip and Added Liked User"));
+                res.json({message: "streamer clip saved"}); 
+              })
+              .catch(err => res.status(422).json(err));
+
+            } else {
+              console.log("ClipRiver Contains Clip");
+              console.log(data.likedUsers);
+              console.log(req.session.passport.user);
+              console.log(data.likedUsers.indexOf(req.session.passport.user));
+              
+              
+
+              if (data.likedUsers.indexOf(req.session.passport.user) === -1){
+
+                db.ClipRiver.findOneAndUpdate({url: req.body.clipID}, {$push: {likedUsers: req.session.passport.user}}, { $inc: {value: 5 } })
+                .then(dbModel => {
+                  console.log(chalk.yellow("Added Liked User"));
+                  res.json({message: "streamer clip saved"}); 
+                })
+                .catch(err => res.status(422).json(err));
+
+              } else {
+                console.log(chalk.red("Liked User Exists"));
+                res.json({message: "streamer clip saved"}); 
+              }
+            }
+            
+          })
+          .catch(err => console.log(err));
+
+          //////////////////////END CLIP RIVER
+            
             
           })
           .catch(err => res.status(422).json(err));
@@ -195,7 +237,49 @@ module.exports = {
           .then(dbModel => {
             console.log("game clip saved");
       
-            res.json({message: "game clip saved"})
+                       //////////////////////START CLIP RIVER
+
+          db.ClipRiver.findOne({url: req.body.clipID})
+          .then(data => {
+            console.log(data);
+            if (!data){
+              console.log("ClipRiver DIDN't CONTAIN Clip");
+              
+
+              db.ClipRiver.create({url: req.body.clipID, value: 5, likedUsers: [req.session.passport.user]})
+              .then(dbModel => {
+                console.log(chalk.green("ClipRiver Created Clip and Added Liked User"));
+                res.json({message: "streamer clip saved"}); 
+              })
+              .catch(err => res.status(422).json(err));
+
+            } else {
+              console.log("ClipRiver Contains Clip");
+              console.log(data.likedUsers);
+              console.log(req.session.passport.user);
+              console.log(data.likedUsers.indexOf(req.session.passport.user));
+              
+              
+
+              if (data.likedUsers.indexOf(req.session.passport.user) === -1){
+
+                db.ClipRiver.findOneAndUpdate({url: req.body.clipID}, {$push: {likedUsers: req.session.passport.user}}, { $inc: {value: 5 } })
+                .then(dbModel => {
+                  console.log(chalk.yellow("Added Liked User"));
+                  res.json({message: "streamer clip saved"}); 
+                })
+                .catch(err => res.status(422).json(err));
+
+              } else {
+                console.log(chalk.red("Liked User Exists"));
+                res.json({message: "streamer clip saved"}); 
+              }
+            }
+            
+          })
+          .catch(err => console.log(err));
+
+          //////////////////////END CLIP RIVER
             
           })
           .catch(err => res.status(422).json(err));

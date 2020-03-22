@@ -2,7 +2,7 @@ const db = require("../models");
 const axios = require("axios");
 const chalk = require("chalk")
 
-// Defining methods for the booksController
+// Defining methods for the searchController
 module.exports = {
 
   searchStreamer: function(req, res) {

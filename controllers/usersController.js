@@ -1,7 +1,7 @@
 const db = require("../models");
 const passport = require("passport");
 
-// Defining methods for the booksController
+// Defining methods for the usersController
 module.exports = {
 
   create: function(req, res) {
