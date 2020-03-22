@@ -6,9 +6,11 @@ const chalk = require("chalk")
 module.exports = {
 
     getRiver: function(req, res) {
+        console.log("entered get River");
+        
 
         db.ClipRiver.find({}).then(function(data){
-            console.log(chalk.green("found " + data.length + "documents"));
+            console.log(chalk.green("found " + data.length + " documents"));
             res.json(data);
         }).catch(function(err){
             res.status(422).json(err)

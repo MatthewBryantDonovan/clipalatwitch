@@ -1,7 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import ClipRiver from "./ClipRiver"
+import API from "../utils/API"
 
-function Home() {
+
+function Home(props) {
+      const [userData, setUserData] = useState();
+      const [riverData, setRiverData] = useState();
+
+      useEffect(() => {
+            if (!riverData) {
+                API.userSavedInfo().then(function (data) {
+                    console.log(data);
+                    setUserData(data.data)
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            }
+            if (!userData) {
+                API.getRiver().then(function (data) {
+                    console.log("River Obtained");
+                    console.log(data.data);
+                    
+                    setRiverData(data.data)
+                }).catch(function (err) {
+                });
+            }
+          }, [])
 
       return (
             <React.Fragment>
@@ -14,7 +39,7 @@ function Home() {
                                                 <p>Welcome home!</p>
                                           </div>
                                     </div>
-                                    <ClipRiver />
+                                    {(riverData) ? <ClipRiver riverData={riverData} /> : <div> Loading River </div>}
                               </div>
                         </div>
                   </div>

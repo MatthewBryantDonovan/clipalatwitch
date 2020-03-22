@@ -70,37 +70,37 @@ function Routing() {
                   <Route
                         path='/'
                         exact={true}
-                        component={() => <Redirect to="/home" loginRoutes={loginRoutesChanged} />}
+                        component={() => <Redirect to="/home" logoutRoutes={loginRoutesChangedBack} loginRoutes={loginRoutesChanged} />}
                   />
 
                   <Route
                         path='/home'
-                        component={() => <Home loginRoutes={loginRoutesChanged}/>}
+                        component={() => <Home logoutRoutes={loginRoutesChangedBack} loginRoutes={loginRoutesChanged}/>}
                   />
 
                   <Route
                         path='/login'
-                        component={() => <Login loginRoutes={loginRoutesChanged} />}
+                        component={() => <Login logoutRoutes={loginRoutesChangedBack} loginRoutes={loginRoutesChanged} />}
                   />
 
                   <Route
                         path='/register'
-                        component={() => <Register routes={routes} loginRoutes={loginRoutesChanged} />}
+                        component={() => <Register routes={routes} logoutRoutes={loginRoutesChangedBack} loginRoutes={loginRoutesChanged} />}
                   />
 
                   <Route
                         path='/search'
-                        component={() => <UserSearchPage routes={routes} loginRoutes={loginRoutesChanged} logoutRoutes={loginRoutesChangedBack} />}
+                        component={() => <UserSearchPage routes={routes} logoutRoutes={loginRoutesChangedBack} loginRoutes={loginRoutesChanged} />}
                   />
 
                   <Route
                         path='/saved'
-                        component={() => <UserSavedPage routes={routes} loginRoutes={loginRoutesChanged} logoutRoutes={loginRoutesChangedBack}  />}
+                        component={() => <UserSavedPage routes={routes} logoutRoutes={loginRoutesChangedBack} loginRoutes={loginRoutesChanged}  />}
                   />
 
                   <Route
                         path='/logout'
-                        component={() => <UserSavedPage routes={routes} loginRoutes={loginRoutesChanged} />}
+                        component={() => <UserSavedPage routes={routes} logoutRoutes={loginRoutesChangedBack} loginRoutes={loginRoutesChanged} />}
                   />
 
             </Router>
