@@ -89,13 +89,13 @@ module.exports = {
   },
 
   updateImage:  function(req, res){
+    console.log(req.body.userImage);
+    
     db.User
-    .findByIdAndUpdate(req.session.passport.user,
-      req.body.userImage,
-      {new: true},
-      )
+    .update( {_id: req.session.passport.user},
+      {userImage: req.body.userImage})
     .then(() => {
-      res.json({msg: db.User.userImage})
+      res.json({msg: "success"})
     })
     .catch(err => res.status(422).json(err));
   }

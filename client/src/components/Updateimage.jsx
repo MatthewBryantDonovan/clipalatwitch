@@ -19,7 +19,7 @@ function Updateimage(props) {
             <React.Fragment>
                   <div id="modal1" class="modal" style={{ backgroundColor: "#161616" }}>
                         <div className="modal-content">
-                              <form action="submit" onSubmit={subClose}>
+                              <form action="submit" onSubmit={() => props.submitImageUrl()}>
                                     <div className="row">
                                           <div class="input-field col s6">
                                                 <input placeholder="https://www.some-image-url.com" id="first_name" type="text" class="validate" onChange={props.handleImageChange} required />
@@ -29,7 +29,7 @@ function Updateimage(props) {
                               </form>
                         </div>
                         <div class="modal-footer" style={{ backgroundColor: "#161616" }}>
-                              <button className="btn" type="submit">Submit</button>
+                              <button className="btn" type="submit" onClick={() => props.submitImageUrl()}>Submit</button>
                               <a href="#!" className="modal-close waves-effect waves-green btn-flat" style={{ color: "#66fcf1" }}>Close</a>
                         </div>
                   </div>

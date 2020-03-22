@@ -40,10 +40,15 @@ function Sidenav(props) {
       }
 
       const submitImageUrl = e => {
-            e.preventDefault();
+            // e.preventDefault();
+
+
             const object = {
                   userImage
             }
+           console.log("entered submitIMG submitting object below");
+           console.log(object);
+           
            
             API.updateImage(object).then((res) => {
                   console.log(res)
