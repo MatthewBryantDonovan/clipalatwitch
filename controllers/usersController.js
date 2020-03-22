@@ -86,6 +86,17 @@ module.exports = {
       res.status(422).json("No user logged in")
     }
 
+  },
+
+  updateImage:  function(req, res){
+    db.User
+    .findByIdAndUpdate(req.session.passport.user,
+      req.body.userImage,
+      {new: true},
+      )
+    .then(() => {
+      res.json({msg: db.User.userImage})
+    })
+    .catch(err => res.status(422).json(err));
   }
-  
 };

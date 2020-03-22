@@ -21,4 +21,8 @@ router.route("/logout")
 .delete(usersController.logout)
 .get(usersController.logout);
 
+// Matches with "/api/users/updateimage"
+router.route("/updateimage")
+.put(usersController.updateImage)
+
 module.exports = router;

@@ -47,30 +47,18 @@ function ClipSlick(props) {
     nextArrow: <Nextarrow />,
     prevArrow: <Prevarrow />
   };
-      return (
-        <div className="center">
-          <Slider {...settings} style={ (window.innerWidth < 900) ? {width: ((width*0.79)+"px")} : {width: "100%"}}>
-          { (props.clipData) ? props.clipData.clips.map((clip, index) => (
-                <div id={clip.id}  key={index}>
-                    <iframe src={clip.embed_url + "&autoplay=false"} height={clipHeight} width={clipWidth} allowFullScreen></iframe>
-                    {(props.favoriteClip) ? 
-                      (props.type === "streamer") ?
-                        (props.userData.streamers.some(streamer => streamer.likedContent.includes(clip.embed_url))) ? 
-                          <div> You like it! </div>
-                          :
-                          <div><button className="like" onClick={() => props.favoriteClip(clip.embed_url)}><i className="material-icons" style={{color: '#008080'}}>favorite_border</i></button></div> 
-                        :
-                        (props.userData.games.some(game => game.likedContent.includes(clip.embed_url))) ? 
-                          <div> You like it! </div>
-                          :
-                          <div><button  className="like" onClick={() => props.favoriteClip(clip.embed_url)}><i className="material-icons" style={{color: '#008080'}}>favorite_border</i></button></div> 
-                    : 
-                    <span> </span>}
-                </div>
-            )) : <div></div>}
-          </Slider>
-        </div>
-      );
+
+  return (
+    <div className="center">
+      <Slider {...settings} style={(window.innerWidth < 900) ? { width: ((width * 0.79) + "px") } : { width: "100%" }}>
+        {(props.clipData) ? props.clipData.clips.map((clip, index) => (
+          <div id={clip.id} key={index}>
+            <iframe src={clip.embed_url + "&autoplay=false"} height={clipHeight} width={clipWidth} allowFullScreen></iframe>
+          </div>
+        )) : <div></div>}
+      </Slider>
+    </div>
+  );
 
 }
 

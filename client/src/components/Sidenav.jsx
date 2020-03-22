@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import M from 'materialize-css/dist/js/materialize.min.js'
 import API from '../utils/API'
+import Updateimage from './Updateimage'
 
 {/* <form action="/logout?_method=DELETE" method="POST">
 <i className="material-icons" style={{color: '#66fcf1'}} >
@@ -17,6 +18,7 @@ function Sidenav(props) {
       const [userData, setUserData] = useState()
       const [routes, setRoutes] = useState(props.routes)
       const [redirect, setRedirect] = useState(false);
+      const [userImage, setUserImage] = useState(null)
 
       useEffect(() => {
             if (!userData) {
@@ -24,18 +26,38 @@ function Sidenav(props) {
                         setUserData(data.data)
                         props.loginRoutes()
                   }).catch(function (err) {
-                        if (props.routes.length !== 3){
+                        if (props.routes.length !== 3) {
                               props.logoutRoutes();
                         }
                   });
             }
       }, [userData, props.routes])
 
-      const changeImage = () => {
-            console.log("entered change img");
-            
+
+      const handleImageChange = e => {
+            const url = e.target.value
+            setUserImage(url)
       }
-      
+
+      const submitImageUrl = e => {
+            e.preventDefault();
+            const object = {
+                  userImage
+            }
+           
+            API.updateImage(object).then((res) => {
+                  console.log(res)
+                  API.userSavedInfo().then(function (data) {
+                        setUserData(data.data)
+                        props.loginRoutes()
+                  }).catch(function (err) {
+                        if (props.routes.length !== 3) {
+                              props.logoutRoutes();
+                        }
+                  }).catch(err => console.log(err));
+            });
+      }
+
 
       const logout = () => {
             console.log("entered logout");
@@ -68,17 +90,20 @@ function Sidenav(props) {
 
       return (
             <React.Fragment>
+                  <Updateimage handleImageChange={handleImageChange} submitImageUrl={submitImageUrl} />
                   {redirect && <Redirect to='/login' />}
                   <nav>
                         <a href="#" data-target="slide-out" className="sidenav-trigger show-on-large" ><i className="material-icons nav-head-icon">menu</i></a>
                   </nav>
                   <ul id="slide-out" className="sidenav">
-                       {
-                             (userData)?  <li><div className="user-view">
-                             <img className="circle" onClick={() => changeImage()} src={userData.userImage} alt="Click_To_Change_Image" />
-                             <span className="white-text name">{userData.username}</span>
-                       </div></li> : <div></div>
-                       }
+                        {
+                              (userData) ? <li><div className="user-view">
+                                    {/* <button data-target="modal1" className="btn modal-trigger">Modal</button> */}
+
+                                    <img className="circle modal-trigger" data-target="modal1" src={userData.userImage} alt="Click_To_Change_Image" />
+                                    <span className="white-text name">{userData.username}</span>
+                              </div></li> : <div></div>
+                        }
                         {props.routes.map((route, index) => (
                               (route.path !== '/logout') ?
                                     <li key={index}><Link to={route.path} className="sidenav-close" ><i className="material-icons" style={{ color: '#66fcf1' }} >{route.i}</i>{route.name}</Link></li>
