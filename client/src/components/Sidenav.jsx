@@ -28,6 +28,8 @@ function Sidenav(props) {
                   }).catch(function (err) {
                         if (props.routes.length !== 3) {
                               props.logoutRoutes();
+                        } else {
+                              console.log(err)
                         }
                   });
             }
@@ -39,8 +41,7 @@ function Sidenav(props) {
             setUserImage(url)
       }
 
-      const submitImageUrl = e => {
-            // e.preventDefault();
+      const submitImageUrl = () => {
 
 
             const object = {
