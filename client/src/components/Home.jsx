@@ -9,7 +9,7 @@ function Home(props) {
       const [riverData, setRiverData] = useState();
 
       useEffect(() => {
-            if (!riverData) {
+            if (!userData) {
                 API.userSavedInfo().then(function (data) {
                     console.log(data);
                     setUserData(data.data)
@@ -17,16 +17,36 @@ function Home(props) {
                     console.log(err);
                 });
             }
-            if (!userData) {
+            if (!riverData) {
                 API.getRiver().then(function (data) {
                     console.log("River Obtained");
                     console.log(data.data);
                     
                     setRiverData(data.data)
                 }).catch(function (err) {
+                  console.log(err);
                 });
             }
           }, [])
+
+      const clipType = (clipType, id) => {
+            console.log("test");
+            
+            let resObj = { clipType: clipType, _id: id };
+            API.clipType(resObj).then(function (data) {
+                  console.log("Comment Successful");
+                  API.getRiver().then(function (data) {
+                        console.log("River Obtained");
+                        console.log(data.data);
+                        
+                        setRiverData(data.data)
+                    }).catch(function (err) {
+                      console.log(err);
+                    });
+              }).catch(function (err) {
+                  console.log(err);
+              });
+      }
 
       return (
             <React.Fragment>
@@ -39,7 +59,7 @@ function Home(props) {
                                                 <p>Welcome home!</p>
                                           </div>
                                     </div>
-                                    {(riverData) ? <ClipRiver riverData={riverData} /> : <div> Loading River </div>}
+                                    {(riverData) ? <ClipRiver riverData={riverData} clipType={clipType} userData={userData}/> : <div> Loading River </div>}
                               </div>
                         </div>
                   </div>

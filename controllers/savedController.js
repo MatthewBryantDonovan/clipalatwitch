@@ -85,6 +85,7 @@ module.exports = {
       .findOne({ _id: req.session.passport.user})
       .then(dbModel => {
         let resObj = {
+          _id: dbModel._id,
           streamers: dbModel.streamers,
           games: dbModel.games,
           username: dbModel.username,

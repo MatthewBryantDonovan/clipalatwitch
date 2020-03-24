@@ -13,5 +13,6 @@ export default {
       removeStreamerOrGame: (type, id) => axios.post('/api/saved/delete/' + type + '/'+ id), // connected
       logout: () => axios.delete('/api/users/logout'), // connected
       getRiver: () => axios.get('/api/clipriver/getriver'), // connected
-      updateImage: (newImage) => axios.put('/api/users/updateimage', newImage) // connected
+      updateImage: (newImage) => axios.put('/api/users/updateimage', newImage), // connected
+      clipType: (clipType) => axios.post('/api/clipriver/cliptype', clipType) // connected
 };

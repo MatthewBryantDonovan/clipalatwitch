@@ -6,11 +6,11 @@ const clipRiverSchema = new Schema({
   value: { type: Number, required: true },
   likedUsers: [String],
   typedUsers: [String],
-  clutchType: Number,
-  comboType: Number,
-  failType: Number,
-  funnyType: Number,
-  hypeType: Number
+  clutchType: { type: Number, default: 0 },
+  comboType: { type: Number, default: 0 },
+  failType: { type: Number, default: 0 },
+  funnyType: { type: Number, default: 0 },
+  hypeType: { type: Number, default: 0 }
 });
 
 
