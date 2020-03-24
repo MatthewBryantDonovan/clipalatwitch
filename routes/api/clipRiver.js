@@ -5,5 +5,9 @@ const clipRiverController = require("../../controllers/clipRiverController");
 router.route("/getriver")
 .get(clipRiverController.getRiver);
 
+// Matches with "/api/clipriver/cliptype"
+router.route("/cliptype")
+.post(clipRiverController.clipType);
+
 
 module.exports = router;

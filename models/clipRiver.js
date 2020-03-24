@@ -5,7 +5,12 @@ const clipRiverSchema = new Schema({
   url: { type: String, required: true },
   value: { type: Number, required: true },
   likedUsers: [String],
-  typedUsers: [String]
+  typedUsers: [String],
+  clutchType: Number,
+  comboType: Number,
+  failType: Number,
+  funnyType: Number,
+  hypeType: Number
 });
 
 
