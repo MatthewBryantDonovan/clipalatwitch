@@ -1,3 +1,4 @@
+/////////////////  Dependencies /////////////////
 const router = require("express").Router();
 const savedController = require("../../controllers/savedController");
 
@@ -23,10 +24,7 @@ router.route("/clips/:type/:id")
 
 // Matches with "/api/saved/delete/:type/:id"
 router.route("/delete/:type/:id")
-.post(savedController.removeStreamerOrGame)
+.post(savedController.removeStreamerOrGame);
 
+// Exporting router
 module.exports = router;
-
-// numberframes = base(window.Sizzle / 320 )
-
-// frames = numberframes

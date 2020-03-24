@@ -29,6 +29,8 @@ function Login(props) {
             }
 
             API.loginUser(object).then(function(data){
+                  console.log(data);
+                  
                   API.userSavedInfo().then(function (data) {
                         setRedirect(true);
                   }).catch(function (err) {

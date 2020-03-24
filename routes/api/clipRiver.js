@@ -1,3 +1,4 @@
+/////////////////  Dependencies /////////////////
 const router = require("express").Router();
 const clipRiverController = require("../../controllers/clipRiverController");
 
@@ -9,5 +10,5 @@ router.route("/getriver")
 router.route("/cliptype")
 .post(clipRiverController.clipType);
 
-
+// Exporting router
 module.exports = router;

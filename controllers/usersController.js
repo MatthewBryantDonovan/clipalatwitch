@@ -1,102 +1,78 @@
+/////////////////  Dependencies /////////////////
 const db = require("../models");
-const passport = require("passport");
 
 // Defining methods for the usersController
 module.exports = {
 
+  // Method for creating user
   create: function(req, res) {
 
+    // See if user exists
     db.User
     .findOne({ username: req.body.username})
     .then(dbModel => {
-      
       if(!dbModel){
-        // New user
-        console.log("creating");
-        
-        db.User.create(req.body)
-          .then(dbModel => {
-            console.log(dbModel);
-            dbModel.password = "";
-            
-            res.json(dbModel)
-              //FIXME: need to send completed only
-          })
-          .catch(err => res.status(422).json(err));
+
+        // Create user
+        db.User
+        .create(req.body)
+        .then(dbModel => {
+          dbModel.password = "";
+          res.json(dbModel);
+        })
+        .catch(err => res.status(422).json(err));
       } else {
-        // user exists
-        console.log("exists already");
-        res.status(409).json({Error: "User name already Exists"})
-        //FIXME: need to see how to send a message
+
+        // User exists
+        res.status(409).json({msg: "User name already Exists"});
       }
     })
     .catch(err => res.status(422).json(err));
 
   },
 
+  // Method for user login
   userLogin: function(req, res) {
 
-    ///////////////////////// Original
-    // db.User.findOne({ username: req.body.username})
-    //   .then(function(user){
-  
-    //   // test a matching password
-    //   
-    
-    // }).catch(err => res.status(422).json(err));
-    ///////////////////////// Original 
+    // This route is completed by passport before it hits the controller
 
-    ///////////////////////// FIXME: New 
-
-    // passport.authenticate('local', {
-    //   successRedirect: "/",
-    //   failureRedirect: "/login",
-    //   failureFlash: true
-    // })
-
-    // console.log("here");
-    
-    // passport.authenticate('local', 
-    // {
-    //   successRedirect: "/",
-    //   failureRedirect: "/login",
-    //   failureFlash: true
-    // }
-    // );
-
-    console.log("here");
-    
-    res.json("did it");
-    
   },
 
+  // Method for user logout
   logout: function(req, res) {
+
+    // See if user session exists
     if(req.session.passport){
-      console.log(req.session.passport);
       if(req.session.passport.user){
-        console.log("user exists");
+
+        // Logout user
         req.logOut();
-        console.log("logout happened");
-        res.json("User Logout");
+        res.json({msg: "User Logout"});
       } else {
-        console.log("user didn't exist");
-        res.status(422).json("No user logged in")
+        res.status(422).json({msg: "No user logged in"});
       }
     } else {
-      res.status(422).json("No user logged in")
+      res.status(422).json({msg: "No user logged in"});
     }
 
   },
 
-  updateImage:  function(req, res){
-    console.log(req.body.userImage);
-    
-    db.User
-    .update( {_id: req.session.passport.user},
-      {userImage: req.body.userImage})
-    .then(() => {
-      res.json({msg: "success"})
-    })
-    .catch(err => res.status(422).json(err));
+  updateImage: function(req, res){
+
+    // See if user session exists
+    if(req.session.passport){
+
+      // Update user image
+      db.User
+      .update( {_id: req.session.passport.user}, {userImage: req.body.userImage})
+      .then(() => {
+        res.json({msg: "success"});
+      })
+      .catch(err => res.status(422).json(err));
+    } else {
+      res.status(422).json({msg: "No user logged in"});
+    }
+
   }
+
 };

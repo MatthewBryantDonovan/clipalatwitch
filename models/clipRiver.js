@@ -1,6 +1,8 @@
+/////////////////  Dependencies /////////////////
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// ClipRiver Schema
 const clipRiverSchema = new Schema({
   url: { type: String, required: true },
   value: { type: Number, required: true },
@@ -13,7 +15,8 @@ const clipRiverSchema = new Schema({
   hypeType: { type: Number, default: 0 }
 });
 
-
+// Mongoose model for ClipRiver
 const ClipRiver = mongoose.model("ClipRiver", clipRiverSchema);
 
+// Exporting ClipRiver
 module.exports = ClipRiver;

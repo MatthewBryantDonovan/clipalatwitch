@@ -1,3 +1,4 @@
+/////////////////  Dependencies /////////////////
 const router = require("express").Router();
 const searchController = require("../../controllers/searchController");
 
@@ -9,4 +10,5 @@ router.route("/streamer/:streamer")
 router.route("/game/:game")
 .get(searchController.searchGame);
 
+// Exporting router
 module.exports = router;
