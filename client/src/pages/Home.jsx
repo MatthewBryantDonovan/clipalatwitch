@@ -57,7 +57,7 @@ function Home(props) {
                                           <div className="card-content white-text">
                                                 <span className="card-title">Clip &#224; la Twitch</span>
                                                 {(userData) ? <p>Welcome home {userData.username} !</p> : <span></span>}
-                                          <p>You are currently viewing liked videos from Clip &#224; la Twitch's users sorted by popularity!</p>
+                                          <p>You are currently viewing liked videos from Clip &#224; la Twitch's users - sorted by popularity!</p>
                                           {(userData) ? <p>Classify a video by tagging a 'moment type' to raise its popularity!</p> : <span>Log in to be able to classify a video's 'moment type' to raise its popularity!</span>}
                                           </div>
                                     </div>

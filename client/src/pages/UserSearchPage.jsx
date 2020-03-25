@@ -127,8 +127,8 @@ function UserSearchPage (props) {
             </div>
         </div>
         <div className="row blue-grey darken-3" style={{marginTop: "20px", paddingBottom: "20px"}}>
-            <button className="col m5 s5 btn blue darken-1" onClick={() => setDisplaySearch("streamer")} style={{fontSize: ".75em"}}>Search Streamer</button>
-            <button className="col m5 s5 offset-s2 offset-m2 btn blue darken-1" onClick={() => setDisplaySearch("game")} style={{fontSize: ".75em"}}>Search Game</button>
+            <button className="col m5 s5 btn" onClick={() => setDisplaySearch("streamer")} style={{fontSize: ".75em"}}>Search Streamer</button>
+            <button className="col m5 s5 offset-s2 offset-m2 btn" onClick={() => setDisplaySearch("game")} style={{fontSize: ".75em"}}>Search Game</button>
             <br /><br /><div className="center">{(searchError === "") ? <span>{searchError}</span> : <span style={{color: "Red", fontSize: "1.5em"}}>{searchError}</span>}</div>
             {(displaySearch === "streamer") ? 
             

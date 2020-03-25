@@ -1,4 +1,5 @@
 import React from 'react';
+import "../index.css"
 
 function ClipRiver(props) {
     return(<div className="row center">
@@ -12,7 +13,7 @@ function ClipRiver(props) {
                         {(clipData.failType === (Math.max(clipData.clutchType,clipData.comboType,clipData.failType,clipData.funnyType,clipData.hypeType)) && clipData.failType !== 0) ? <span> Fail </span> : <span></span>}
                         {(clipData.funnyType === (Math.max(clipData.clutchType,clipData.comboType,clipData.failType,clipData.funnyType,clipData.hypeType)) && clipData.funnyType !== 0) ? <span> Funny </span> : <span></span>}
                         {(clipData.hypeType === (Math.max(clipData.clutchType,clipData.comboType,clipData.failType,clipData.funnyType,clipData.hypeType)) && clipData.hypeType !== 0) ? <span> Hype</span> : <span></span>}
-                        {((Math.max(clipData.clutchType,clipData.comboType,clipData.failType,clipData.funnyType,clipData.hypeType)) !== 0) ? <span> Moment!</span> : <span> Untagged <i className="material-icons" style={{ color: '#66fcf1', position: "relative", top: "6px"}} >sentiment_very_dissatisfied</i></span>}
+                        {((Math.max(clipData.clutchType,clipData.comboType,clipData.failType,clipData.funnyType,clipData.hypeType)) !== 0) ? <span> Moment!</span> : <span> Untagged <i className="material-icons" style={{ color: '#1e88e5', position: "relative", top: "6px"}} >sentiment_very_dissatisfied</i></span>}
                     </div>
                     <iframe src={clipData.url + "&autoplay=false"} height="260" width="260" className allowFullScreen></iframe>
                     { 
@@ -39,7 +40,7 @@ function ClipRiver(props) {
                         {(clipData.failType === (Math.max(clipData.clutchType,clipData.comboType,clipData.failType,clipData.funnyType,clipData.hypeType)) && clipData.failType !== 0) ? <span> Fail </span> : <span></span>}
                         {(clipData.funnyType === (Math.max(clipData.clutchType,clipData.comboType,clipData.failType,clipData.funnyType,clipData.hypeType)) && clipData.funnyType !== 0) ? <span> Funny </span> : <span></span>}
                         {(clipData.hypeType === (Math.max(clipData.clutchType,clipData.comboType,clipData.failType,clipData.funnyType,clipData.hypeType)) && clipData.hypeType !== 0) ? <span> Hype</span> : <span></span>}
-                        {((Math.max(clipData.clutchType,clipData.comboType,clipData.failType,clipData.funnyType,clipData.hypeType)) !== 0) ? <span> Moment!</span> : <span> Untagged <i className="material-icons" style={{ color: '#66fcf1', position: "relative", top: "6px"}} >sentiment_very_dissatisfied</i></span>}
+                        {((Math.max(clipData.clutchType,clipData.comboType,clipData.failType,clipData.funnyType,clipData.hypeType)) !== 0) ? <span> Moment!</span> : <span> Untagged <i className="material-icons" style={{ color: '#1e88e5', position: "relative", top: "6px"}} >sentiment_very_dissatisfied</i></span>}
                     </div>
                     <iframe src={clipData.url + "&autoplay=false"} height="260" width="260" allowFullScreen></iframe>
                     { 

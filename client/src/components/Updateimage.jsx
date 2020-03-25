@@ -19,14 +19,14 @@ function Updateimage(props) {
                                     <div className="row">
                                           <div class="input-field col s6">
                                                 <input placeholder="https://www.some-image-url.com" id="first_name" type="text" class="validate" onChange={props.handleImageChange} required />
-                                                <label for="first_name">Image URL</label>
+                                                <label for="first_name" style={{color: 'rgb(30, 136, 229)'}}>Image URL</label>
                                           </div>
                                     </div>
                               </form>
                         </div>
                         <div class="modal-footer" style={{ backgroundColor: "#161616" }}>
                               <button className="btn" type="submit" onClick={subClose}>Submit</button>
-                              <a href="#!" className="modal-close waves-effect waves-green btn-flat" style={{ color: "#66fcf1" }}>Close</a>
+                              <a href="#!" className="modal-close waves-effect waves-green btn-flat" style={{color: 'rgb(30, 136, 229)'}}>Close</a>
                         </div>
                   </div>
             </React.Fragment>
