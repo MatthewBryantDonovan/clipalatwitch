@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import 'materialize-css/dist/css/materialize.min.css'
 import './index.css';
 import Sidenav from './components/Sidenav';
-import Home from './components/Home'
-import Register from './components/Register'
-import Login from './components/Login'
+import Home from './pages/Home'
+import Register from './pages/Register'
+import Login from './pages/Login'
 import UserSearchPage from './pages/UserSearchPage'
 import UserSavedPage from './pages/UserSavedPage'
 

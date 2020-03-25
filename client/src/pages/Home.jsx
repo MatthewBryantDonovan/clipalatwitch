@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import ClipRiver from "./ClipRiver"
+import ClipRiver from "../components/ClipRiver"
 import API from "../utils/API"
 
 
