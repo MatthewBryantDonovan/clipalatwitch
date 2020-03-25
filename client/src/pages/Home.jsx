@@ -52,16 +52,14 @@ function Home(props) {
             <React.Fragment>
                   <div className="container">
                         <div className="row center">
-                              {/* <div className="col s12 m6 center"> */}
-                                    <div className="card blue-grey darken-1">
-                                          <div className="card-content white-text">
-                                                <span className="card-title">Clip &#224; la Twitch</span>
-                                                {(userData) ? <p>Welcome home {userData.username} !</p> : <span></span>}
-                                          <p>You are currently viewing liked videos from Clip &#224; la Twitch's users - sorted by popularity!</p>
-                                          {(userData) ? <p>Classify a video by tagging a 'moment type' to raise its popularity!</p> : <span>Log in to be able to classify a video's 'moment type' to raise its popularity!</span>}
-                                          </div>
+                              <div className="card blue-grey darken-1">
+                                    <div className="card-content white-text">
+                                          <span className="card-title">Clip &#224; la Twitch</span>
+                                          {(userData) ? <p>Welcome home {userData.username} !</p> : <span></span>}
+                                    <p>You are currently viewing liked videos from Clip &#224; la Twitch's users - sorted by popularity!</p>
+                                    {(userData) ? <p>Classify a video by tagging a 'moment type' to raise its popularity!</p> : <span>Log in to be able to classify a video's 'moment type' to raise its popularity!</span>}
                                     </div>
-                              {/* </div> */}
+                              </div>
                         </div>
                         {(riverData) ? <ClipRiver riverData={riverData} clipType={clipType} userData={userData}/> : <div> Loading River </div>}
                   </div>

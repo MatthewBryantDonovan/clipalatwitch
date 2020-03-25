@@ -114,7 +114,7 @@ function UserSavedPage(props) {
             <div className="row">
                 <div className="col m12 s12">
                     {(userData) ?
-                        (userData.streamers.length > 0) ?
+                        (userData.games.length > 0) ?
                             <FollowSlick
                                 data={userData.games}
                                 type={"game"}
