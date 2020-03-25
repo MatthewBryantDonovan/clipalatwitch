@@ -1,3 +1,5 @@
+// Exporting ClipRiver and User models
 module.exports = {
-  User: require("./user")
+  User: require("./user"),
+  ClipRiver: require("./clipRiver")
 };

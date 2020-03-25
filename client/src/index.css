@@ -18,42 +18,73 @@ body,
 html,
 #root {
   height: 100vh;
+  width: 100vw;
 }
 
-nav {
-  background-color: #66fcf1;
+
+.btn, .btn:active, .btn:focus {
+  background-color: #1e88e5 ;
+  color: #ffffff;
 }
 
-.btn {
-  background-color: #66fcf1;
-  color: #161616;
+.btn:hover {
+  background-color: #0d47a1 ;
 }
 
 .linkText {
-  color: #66fcf1;
+  color: #00e5ff ;
 }
 
 .linkText:hover {
-  color: #9b66fc;
+  color: #00b8d4 ;
 }
 
 input {
   color: #ffffff;
 }
 
+.material-icons {
+  color: #ffffff;
+}
+
+.heart, .heart:active, .heart:focus {
+  background-color: #ff80ab ;
+}
+
+.heart:hover {
+  background-color: #ff4885 ;
+}
+
+.unheart, .unheart:active, .unheart:focus {
+  background-color: #7b1fa2  ;
+}
+
+.unheart:hover {
+  background-color: #5a1179  ;
+}
 .dislike {
   width: 100px;
   border: none;
-  background-color: #66fcf1;
+  background-color: #7b1fa2 ;
+  color: #ffffff;
   margin-top: 5px;
+}
+
+.dislike:hover {
+  background-color: #5a1179  ;
 }
 
 .like {
   width: 55%;
   border: none;
-  background-color: #66fcf1;
+  background-color: #ff80ab ;
+  color: #ffffff;
   margin-top: 5px;
   cursor: pointer;
+}
+
+.like:hover {
+  background-color: #ff4885;
 }
 
 .btn-img, .btn-img:active, .btn-img:focus  {
@@ -61,30 +92,27 @@ input {
   background: none;
 }
 
- .slick-arrow {
-  height: 125px;
-  background-color: #66fcf1;
-  color: #66fcf1;
-}
- 
-.slick-arrow:hover {
-  height: 125px;
-  background-color: #66fcf1;
-  color: #66fcf1;
-}
- 
-.slick-arrow:active {
-  height: 125px;
-  background-color: #66fcf1;
-  color: #66fcf1;
-}
 
 .slick-prev:before {
   position: relative;
-  top: calc(50% - 10px);
+  display: inline-block;
+  top: calc(50% - 15px);
+  color: #ffffff !important;
+  content: '\27AD' !important;
+  Font-weight: bolder !important;
+  transform: scaleX(-1) !important;
 }
 
 .slick-next:before {
   position: relative;
-  top: calc(50% - 10px);
+  top: calc(50% - 15px);
+  color: #ffffff !important;
+  content: '\27AD' !important;
+  font-weight: bolder !important;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]) {
+  border-bottom: 1px solid #1e88e5;
+  box-shadow: 0 1px 0 0 #1e88e5;
 }

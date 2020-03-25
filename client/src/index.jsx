@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
 import 'materialize-css/dist/css/materialize.min.css'
 import './index.css';
 import Sidenav from './components/Sidenav';
-import Home from './components/Home'
-import Register from './components/Register'
-import Login from './components/Login'
+import Home from './pages/Home'
+import Register from './pages/Register'
+import Login from './pages/Login'
 import UserSearchPage from './pages/UserSearchPage'
 import UserSavedPage from './pages/UserSavedPage'
 
@@ -67,41 +67,42 @@ function Routing() {
             <Router>
                   <Sidenav routes={routes} logoutRoutes={loginRoutesChangedBack} loginRoutes={loginRoutesChanged} />
 
-                  <Route
-                        path='/'
-                        exact={true}
-                        component={() => <Redirect to="/home" loginRoutes={loginRoutesChanged} />}
-                  />
+                  <Switch>
+                        <Route
+                              path='/'
+                              exact={true}
+                              component={() => <Redirect to="/home" logoutRoutes={loginRoutesChangedBack} loginRoutes={loginRoutesChanged} />}
+                        />
 
-                  <Route
-                        path='/home'
-                        component={() => <Home loginRoutes={loginRoutesChanged}/>}
-                  />
+                        <Route
+                              path='/home'
+                              component={() => <Home logoutRoutes={loginRoutesChangedBack} loginRoutes={loginRoutesChanged}/>}
+                        />
 
-                  <Route
-                        path='/login'
-                        component={() => <Login loginRoutes={loginRoutesChanged} />}
-                  />
+                        <Route
+                              path='/login'
+                              component={() => <Login logoutRoutes={loginRoutesChangedBack} loginRoutes={loginRoutesChanged} />}
+                        />
 
-                  <Route
-                        path='/register'
-                        component={() => <Register routes={routes} loginRoutes={loginRoutesChanged} />}
-                  />
+                        <Route
+                              path='/register'
+                              component={() => <Register routes={routes} logoutRoutes={loginRoutesChangedBack} loginRoutes={loginRoutesChanged} />}
+                        />
 
-                  <Route
-                        path='/search'
-                        component={() => <UserSearchPage routes={routes} loginRoutes={loginRoutesChanged} logoutRoutes={loginRoutesChangedBack} />}
-                  />
+                        <Route
+                              path='/search'
+                              component={() => <UserSearchPage routes={routes} logoutRoutes={loginRoutesChangedBack} loginRoutes={loginRoutesChanged} />}
+                        />
 
-                  <Route
-                        path='/saved'
-                        component={() => <UserSavedPage routes={routes} loginRoutes={loginRoutesChanged} logoutRoutes={loginRoutesChangedBack}  />}
-                  />
+                        <Route
+                              path='/saved'
+                              component={() => <UserSavedPage routes={routes} logoutRoutes={loginRoutesChangedBack} loginRoutes={loginRoutesChanged}  />}
+                        />
 
-                  <Route
-                        path='/logout'
-                        component={() => <UserSavedPage routes={routes} loginRoutes={loginRoutesChanged} />}
-                  />
+                        <Route
+                              component={() => <Home routes={routes} logoutRoutes={loginRoutesChangedBack} loginRoutes={loginRoutesChanged} />}
+                        />
+                  </Switch>
 
             </Router>
       )

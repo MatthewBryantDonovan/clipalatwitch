@@ -29,6 +29,8 @@ function Login(props) {
             }
 
             API.loginUser(object).then(function(data){
+                  console.log(data);
+                  
                   API.userSavedInfo().then(function (data) {
                         setRedirect(true);
                   }).catch(function (err) {
@@ -42,6 +44,10 @@ function Login(props) {
       }
       
       useEffect(()=> {
+            API.userSavedInfo().then(function (data) {
+                  setRedirect(true);
+            }).catch(function (err) {
+            });
             if(redirect === true) {
                   props.loginRoutes();
             }
@@ -53,13 +59,13 @@ function Login(props) {
                   <div className="container">
                         <form action="submit" onSubmit={submit} >
                               <h1>Login!</h1>
-                              <label htmlFor="username">Username</label>
+                              <label htmlFor="username" style={{color: 'rgb(30, 136, 229)'}}>Username</label>
                               <input type="text" id="username" onChange={updateUsername} required  />
-                              <label htmlFor="password">Password</label>
+                              <label htmlFor="password" style={{color: 'rgb(30, 136, 229)'}}>Password</label>
                               <input type="password" id="password" onChange={updatePassword} required  />
                               <button type="submit" className="btn" >Login</button>
                         </form>
-                        <p>Don't have an account? creat one <Link className="linkText" to="/register">here!</Link> </p>
+                        <p>Don't have an account? create one <Link className="linkText" to="/register" style={{color: 'rgb(30, 136, 229)'}}>here!</Link> </p>
                         { (loginFail) ? <strong><p style={{color: "Red", fontSize: "2em"}}> {loginFail} </p></strong> : <span></span>}
                   </div>
             </React.Fragment>

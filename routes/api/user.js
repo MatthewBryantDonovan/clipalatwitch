@@ -1,3 +1,4 @@
+/////////////////  Dependencies /////////////////
 const router = require("express").Router();
 const usersController = require("../../controllers/usersController");
 const passport = require("passport");
@@ -12,7 +13,6 @@ router.route("/login")
 {
   successRedirect: "/",
   failureRedirect: "/login",
-  failureFlash: true
 }
 ));
 
@@ -21,4 +21,9 @@ router.route("/logout")
 .delete(usersController.logout)
 .get(usersController.logout);
 
+// Matches with "/api/users/updateimage"
+router.route("/updateimage")
+.put(usersController.updateImage);
+
+// Exporting router
 module.exports = router;

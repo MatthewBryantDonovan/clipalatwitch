@@ -48,6 +48,10 @@ function Register(props) {
 
 
       useEffect(()=> {
+            API.userSavedInfo().then(function (data) {
+                  setRedirect(true);
+            }).catch(function (err) {
+            });
             if(redirect === true) {
                   props.loginRoutes()
             }
@@ -60,11 +64,11 @@ function Register(props) {
                         <h1>Creat an account!</h1>
                         <h1>{props.boogers}</h1>
                         <form action="submit" onSubmit={submit} >
-                              <label htmlFor="username">Username</label>
+                              <label htmlFor="username" style={{color: 'rgb(30, 136, 229)'}}>Username</label>
                               <input type="text" id="username" onChange={updateUsername} required />
-                              <label htmlFor="username">Image URL for profile pic</label>
+                              <label htmlFor="username" style={{color: 'rgb(30, 136, 229)'}}>Image URL for profile pic</label>
                               <input type="text" id="username" onChange={updateUserImage} required />
-                              <label htmlFor="password">Password</label>
+                              <label htmlFor="password" style={{color: 'rgb(30, 136, 229)'}}>Password</label>
                               <input type="password" id="password" onChange={updatePassword} required  />
                               <button type="submit" className="btn" >Register</button>
                         </form>
