@@ -98,7 +98,7 @@ function Sidenav(props) {
             <React.Fragment>
                   <Updateimage handleImageChange={handleImageChange} submitImageUrl={submitImageUrl} />
                   {redirect && <Redirect to='/login' />}
-                  <nav>
+                  <nav className="pink accent-1">
                         <a href="#" data-target="slide-out" className="sidenav-trigger show-on-large" ><i className="material-icons nav-head-icon">menu</i></a>
                   </nav>
                   <ul id="slide-out" className="sidenav">
@@ -106,15 +106,17 @@ function Sidenav(props) {
                               (userData) ? <li><div className="user-view">
                                     {/* <button data-target="modal1" className="btn modal-trigger">Modal</button> */}
 
+                                    <div className="center-align">
                                     <img className="circle modal-trigger" data-target="modal1" src={userData.userImage} alt="Click_To_Change_Image" />
-                                    <span className="white-text name">{userData.username}</span>
+                                    </div>
+                                    <h5 style={{color: "white"}}>{userData.username}</h5>
                               </div></li> : <div></div>
                         }
                         {props.routes.map((route, index) => (
                               (route.path !== '/logout') ?
-                                    <li key={index}><Link to={route.path} className="sidenav-close" ><i className="material-icons" style={{ color: '#66fcf1' }} >{route.i}</i>{route.name}</Link></li>
+                                    <li key={index}><Link to={route.path} className="sidenav-close" ><i className="material-icons" style={{ color: '#1e88e5' }} >{route.i}</i>{route.name}</Link></li>
                                     :
-                                    <li key={index} onClick={() => logout()} ><Link to='#' className="sidenav-close" ><i className="material-icons" style={{ color: '#66fcf1' }} >{route.i}</i>{route.name}</Link></li>
+                                    <li key={index} onClick={() => logout()} ><Link to='#' className="sidenav-close" ><i className="material-icons" style={{ color: '#1e88e5' }} >{route.i}</i>{route.name}</Link></li>
                         ))}
                   </ul>
             </React.Fragment>

@@ -116,14 +116,15 @@ function UserSearchPage (props) {
         {notAuthed && <Redirect to="/login" />}
     <div className="container">
         <div className="row">
-            <button className="col m6 s6 btn" onClick={() => setDisplaySearch("streamer")}>Search Streamer</button>
-            <button className="col m6 s6 btn" onClick={() => setDisplaySearch("game")}>Search Game</button>
+            <button className="col m6 s6 btn blue darken-1" onClick={() => setDisplaySearch("streamer")} >Search Streamer</button>
+            <button className="col m6 s6 btn blue darken-1" onClick={() => setDisplaySearch("game")} >Search Game</button>
             {(displaySearch === "streamer") ? 
             
             <div className="col m6">
                 <UserSearchForm 
                     formType={"Streamer"}
                     submit={submit}
+                    autoFocus         
                 />
             </div>
             :
@@ -131,23 +132,26 @@ function UserSearchPage (props) {
                 <UserSearchForm 
                     formType={"Game"}
                     submit={submit}
+                    autofocus
                 />
-            </div>
-            
+            </div>           
             }
-        </div>
-        <div className="row center">
-            {(clipData) ? (clipData.streamerID) ? 
-                <div className="col m12 s12">
+             <div className="col m6">
+                  {(clipData) ? (clipData.streamerID) ? 
+                <div className="center-align valign-center">
                     {/* <p>{clipData.streamerName}</p> */}
                     {/* <p>{clipData.streamerID}</p> */}
-                    <img src={clipData.streamerImage} height="125" width="100"></img>
+                    <img src={clipData.streamerImage} height="125" width="100" style={{marginTop: "25px"}} />
                     {(userData.streamers.some(streamer => streamer.id === clipData.streamerID)) ? 
-                    <button type="button" className="btn" onClick={() => removeStreamerOrGame("streamer", clipData.streamerID)}><i className="material-icons" style={{color: '#008080'}}>favorite</i></button>
+                    <div className="row" style={{ marginTop: '10px'}}>
+                        <button type="button" className="unheart btn" onClick={() => removeStreamerOrGame("streamer", clipData.streamerID)}><i className="material-icons" style={{color: '#008080'}}>favorite</i></button>
+                    </div>
                     :
-                    <button type="button" className="btn" onClick={() => save("streamer")}><i className="material-icons" style={{color: '#008080'}}>favorite_border</i></button>
+                    <div className="row" style={{marginTop: '10px'}}>
+                        <button type="button" className="heart btn" onClick={() => save("streamer")}><i className="material-icons" style={{color: '#008080'}}>favorite_border</i></button>
+                    </div>
                     }
-                    <ClipSlick clipData={clipData} />
+                    {/* <ClipSlick clipData={clipData} /> */}
                 </div>
                 :
                 <div>
@@ -159,14 +163,18 @@ function UserSearchPage (props) {
                     :
                     <button type="button" className="btn" onClick={() => save("game")}><i className="material-icons" style={{color: '#008080'}}>favorite_border</i></button>
                     }
-                    <ClipSlick clipData={clipData} />
+                    {/* <ClipSlick clipData={clipData} /> */}
                 </div>
+                
                 :
             <div></div>
             }
 
-            
+            </div>
         </div>
+        {clipData && (
+            <ClipSlick clipData={clipData} />
+        )}
     </div>
     
     </div>)

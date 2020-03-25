@@ -5,7 +5,7 @@ function Prevarrow(props) {
       return (
             <div
                   className={className}
-                  style={{ ...style, display: "block", background: "#66fcf1", height: "100%"}}
+                  style={{ ...style, display: "block", background: "#1e88e5", height: "100%"}}
                   onClick={onClick}
             />
       )
