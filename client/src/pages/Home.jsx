@@ -51,17 +51,17 @@ function Home(props) {
       return (
             <React.Fragment>
                   <div className="container">
-                        <div className="row">
-                              <div className="col s12 m6">
+                        <div className="row center">
+                              {/* <div className="col s12 m6 center"> */}
                                     <div className="card blue-grey darken-1">
                                           <div className="card-content white-text">
-                                                <span className="card-title">Home placeholder</span>
-                                                <p>Welcome home!</p>
+                                                <span className="card-title">Clip &#224; la Twitch</span>
+                                                {(userData) ? <p>Welcome home {userData.username} !</p> : <span></span>}
                                           </div>
                                     </div>
-                                    {(riverData) ? <ClipRiver riverData={riverData} clipType={clipType} userData={userData}/> : <div> Loading River </div>}
-                              </div>
+                              {/* </div> */}
                         </div>
+                        {(riverData) ? <ClipRiver riverData={riverData} clipType={clipType} userData={userData}/> : <div> Loading River </div>}
                   </div>
             </React.Fragment>
       )
