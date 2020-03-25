@@ -48,6 +48,10 @@ function Register(props) {
 
 
       useEffect(()=> {
+            API.userSavedInfo().then(function (data) {
+                  setRedirect(true);
+            }).catch(function (err) {
+            });
             if(redirect === true) {
                   props.loginRoutes()
             }

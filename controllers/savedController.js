@@ -119,36 +119,87 @@ module.exports = {
     // Streamer or game calls to get clips
     if (req.params.type === "streamer"){
       let streamerID = req.params.id;
-      let x_query_clips = "https://api.twitch.tv/helix/clips?broadcaster_id=" + (streamerID);
 
+      //RFC 3339 format
+      var date = new Date();
+      var formatted = date.toISOString(date.setDate(date.getDate() + 1));
+      formatted = formatted.slice(0, -13) + "00:00:00Z";
+      var oldDate = new Date;
+      var oldFormatted = oldDate.toISOString(oldDate.setDate(oldDate.getDate() - 3));
+      oldFormatted = oldFormatted.slice(0, -13) + "00:00:00Z";
+
+      let x_query_clips = "https://api.twitch.tv/helix/clips?broadcaster_id=" + (streamerID) + "&started_at=" + (oldFormatted) + "&ended_at=" + (formatted) + "&first=100";
+      
       // Twitch call
       axios.get((x_query_clips), {
           headers: {
               'Client-ID': process.env.TWITCH_API_KEY
           }
       }).then(function (response) {
-        let resObject = {
-          clips: response.data.data,
-        }
+        if(response.data.data.length == 0){
+          let x_query_clips = "https://api.twitch.tv/helix/clips?broadcaster_id=" + (req.params.id) + "&first=100";
 
-        res.json(resObject);
+          axios.get((x_query_clips), {
+            headers: {
+                'Client-ID': process.env.TWITCH_API_KEY
+            }
+          }).then(function (response) {
+            let resObject = {
+              clips: response.data.data,
+            }
+    
+            res.json(resObject);
+          })
+          .catch(err => res.status(422).json(err));
+        } else {
+          let resObject = {
+            clips: response.data.data,
+          }
+  
+          res.json(resObject);
+        }
       })
       .catch(err => res.status(422).json(err));
     } else if (req.params.type === "game"){
       let gameID = req.params.id;
-      let x_query_game = "https://api.twitch.tv/helix/clips?game_id=" + (gameID);
 
+      //RFC 3339 format
+      var date = new Date();
+      var formatted = date.toISOString(date.setDate(date.getDate() + 1));
+      formatted = formatted.slice(0, -13) + "00:00:00Z";
+      var oldDate = new Date;
+      var oldFormatted = oldDate.toISOString(oldDate.setDate(oldDate.getDate() - 3));
+      oldFormatted = oldFormatted.slice(0, -13) + "00:00:00Z";
+
+      let x_query_game = "https://api.twitch.tv/helix/clips?game_id=" + (gameID) + "&started_at=" + (oldFormatted) + "&ended_at=" + (formatted) + "&first=100";
       // Twitch call
       axios.get((x_query_game), {
           headers: {
               'Client-ID': process.env.TWITCH_API_KEY
           }
       }).then(function (response) {
-        let resObject = {
-          clips: response.data.data,
-        }
+        if(response.data.data.length == 0){
+          let x_query_clips = "https://api.twitch.tv/helix/clips?game_id=" + (req.params.id) + "&first=100";
 
-        res.json(resObject);
+          axios.get((x_query_clips), {
+            headers: {
+                'Client-ID': process.env.TWITCH_API_KEY
+            }
+          }).then(function (response) {
+            let resObject = {
+              clips: response.data.data,
+            }
+    
+            res.json(resObject);
+          })
+          .catch(err => res.status(422).json(err));
+        } else {
+          let resObject = {
+            clips: response.data.data,
+          }
+  
+          res.json(resObject);
+        }
       })
       .catch(err => res.status(422).json(err));
     }

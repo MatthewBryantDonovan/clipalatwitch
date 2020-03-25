@@ -114,7 +114,7 @@ function Sidenav(props) {
                               (route.path !== '/logout') ?
                                     <li key={index}><Link to={route.path} className="sidenav-close" ><i className="material-icons" style={{ color: '#66fcf1' }} >{route.i}</i>{route.name}</Link></li>
                                     :
-                                    <li key={index} onClick={() => logout()} ><Link to="/login" className="sidenav-close" ><i className="material-icons" style={{ color: '#66fcf1' }} >{route.i}</i>{route.name}</Link></li>
+                                    <li key={index} onClick={() => logout()} ><Link to='#' className="sidenav-close" ><i className="material-icons" style={{ color: '#66fcf1' }} >{route.i}</i>{route.name}</Link></li>
                         ))}
                   </ul>
             </React.Fragment>
