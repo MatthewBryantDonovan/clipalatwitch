@@ -53,7 +53,7 @@ function FollowSlick(props) {
                 <img height="125" width="100" src={item.image}  />
               </button>
             </div>
-            <div><button onClick={() => props.remove(props.type.toString(), item.id)} className="dislike">X</button></div>
+            <div><button onClick={() => props.remove(props.type.toString(), item.id)} className="dislike">&#10007;</button></div>
           </div>
         ))}
       </Slider>
