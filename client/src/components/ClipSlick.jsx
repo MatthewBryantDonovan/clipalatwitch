@@ -59,12 +59,12 @@ function ClipSlick(props) {
                     (props.userData.streamers.some(streamer => streamer.likedContent.includes(clip.embed_url))) ? 
                       <div> You like it! </div>
                       :
-                      <div><button className="like" onClick={() => props.favoriteClip(clip.embed_url)}><i className="material-icons" style={{color: '#008080'}}>favorite_border</i></button></div> 
+                      <div><button className="like" onClick={() => props.favoriteClip(clip.embed_url)}><i className="material-icons" style={{color: 'rgb(30, 136, 229)'}}>favorite_border</i></button></div> 
                     :
                     (props.userData.games.some(game => game.likedContent.includes(clip.embed_url))) ? 
                       <div> You like it! </div>
                       :
-                      <div><button  className="like" onClick={() => props.favoriteClip(clip.embed_url)}><i className="material-icons" style={{color: '#008080'}}>favorite_border</i></button></div> 
+                      <div><button  className="like" onClick={() => props.favoriteClip(clip.embed_url)}><i className="material-icons" style={{color: 'rgb(30, 136, 229)'}}>favorite_border</i></button></div> 
                 : 
                 <span> </span>}
             </div>

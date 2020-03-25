@@ -20,8 +20,8 @@ function UserSearchForm(props) {
             props.submit( props.formType, name)
             }}>
         <p>{props.formType} Search!</p>
-            <label htmlFor="name">{props.formType} Name</label>
-            <input type="text" id="name" onChange={updateName} ref={focusForm} required />
+            <label htmlFor="name" style={{color: 'rgb(30, 136, 229)'}}>{props.formType} Name</label>
+            <input type="text" id="name" className="search-area" onChange={updateName} ref={focusForm} required />
             <button type="submit" className="btn" >Search</button>
         </form>
     </div>)

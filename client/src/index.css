@@ -110,3 +110,9 @@ input {
   content: '\27AD' !important;
   font-weight: bolder !important;
 }
+
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]) {
+  border-bottom: 1px solid #1e88e5;
+  box-shadow: 0 1px 0 0 #1e88e5;
+}

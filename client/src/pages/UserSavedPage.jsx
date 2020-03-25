@@ -89,32 +89,43 @@ function UserSavedPage(props) {
         {notAuthed && <Redirect to="/login" />}
         <div className="container" style={{textAlign: "center"}}>
             <div className="row" style={{marginTop: "10px"}}>
-                <div className="col m12">
-                    {(userData) ? (
-                        <FollowSlick
-                            data={userData.streamers}
-                            type={"streamer"}
-                            remove={removeStreamerOrGame}
-                            view={viewClips}
-                        />
-                    ) : <div></div>}
+                <div className="col m12 s12">
+                    {(userData) ?
+                        (userData.streamers.length > 0) ?
+                            <FollowSlick
+                                data={userData.streamers}
+                                type={"streamer"}
+                                remove={removeStreamerOrGame}
+                                view={viewClips}
+                            />
+                            :
+                            <div className="blue-grey darken-3" style={{height: "155px", width: "100%", lineHeight: "11"}}><span>Use the search link to find games to follow.</span></div>
+                        :
+                        <div></div>
+                    }
 
                 </div>
             </div>
             <div className="row">
-                <div className="col m12">
+                <div className="col m12 s12">
                     {(clipData) ? <ClipSlick clipData={clipData} favoriteClip={favoriteClip} type={clipDataType} userData={userData}/> : <div style={ {height: "205px"}}></div>}
                 </div>
             </div>
             <div className="row">
-                <div className="col m12">
-                    {(userData) ? (
-                        <FollowSlick
-                            data={userData.games}
-                            type={"game"}
-                            remove={removeStreamerOrGame}
-                            view={viewClips}
-                        />) : <div></div>}
+                <div className="col m12 s12">
+                    {(userData) ?
+                        (userData.streamers.length > 0) ?
+                            <FollowSlick
+                                data={userData.games}
+                                type={"game"}
+                                remove={removeStreamerOrGame}
+                                view={viewClips}
+                            />
+                            :
+                            <div className="blue-grey darken-3" style={{height: "155px", lineHeight: "11"}}><span>Use the search link to find games to follow.</span></div>
+                        :
+                        <div></div>
+                    }
 
                 </div>
             </div>
