@@ -54,7 +54,7 @@ function ClipSlick(props) {
     props.clipData.clips.map((clip, index) => (
       <div id={clip.id}  key={index}>
           <iframe src={clip.embed_url + "&autoplay=false"} height={clipHeight} width={clipWidth} allowFullScreen
-              srcdoc={`<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=${clip.embed_url + "&autoplay=false"}><img src=${clip.thumbnail_url} alt=${clip.title}><span>▶</span></a>`}
+              srcdoc={`<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%;background: black}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto;z-index: 1}p{position:absolute;width:100%;top:0%;margin:auto}.bottom-bar{position:absolute;width:100%;bottom:0%;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}p,.bottom-bar{height:1.5em;text-align:center;font:12px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black;background: black;line-height:1.45;}</style><a href=${clip.embed_url + "&autoplay=false"}><img src=${clip.thumbnail_url} alt=${clip.title}><p>${clip.title}</p><span>▶</span><div class="bottom-bar"></div></a>`}
           ></iframe>
           {(props.favoriteClip) ? 
             (props.type === "streamer") ?
