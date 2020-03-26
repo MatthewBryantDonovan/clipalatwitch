@@ -38,23 +38,39 @@ function ClipSlick(props) {
   // Slick settings
   const settings = {
     speed: 200,
-    slidesToShow: (slides > 3) ? 3 : slides,
-    slidesToScroll: (slides > 3) ? 3 : slides,
+    slidesToShow: 3,
+    slidesToScroll: 3,
     accessibility: true,
     lazyLoad: true,
     swipeToSlide: true,
     nextArrow: <Nextarrow />,
-    prevArrow: <Prevarrow />
+    prevArrow: <Prevarrow />,
+    responsive: [
+      {
+        breakpoint: 1744,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        }
+      },
+      {
+        breakpoint: 1163,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
+      }
+    ]
   };
 
   return (
   <div className="center">
-    <Slider {...settings} style={ (window.innerWidth < 900) ? {width: ((width*0.79)+"px")} : {width: "100%"}}>
+    <Slider {...settings} style={{width: "100%"}}>
     {(props.clipData) ?
     props.clipData.clips.map((clip, index) => (
       <div id={clip.id}  key={index}>
           <iframe src={clip.embed_url + "&autoplay=false"} height={clipHeight} width={clipWidth} allowFullScreen
-              srcdoc={`<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=${clip.embed_url + "&autoplay=false"}><img src=${clip.thumbnail_url} alt=${clip.title}><span>▶</span></a>`}
+              srcDoc={`<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=${clip.embed_url + "&autoplay=false"}><img src=${clip.thumbnail_url} alt=${clip.title}><span>▶</span></a>`}
           ></iframe>
           {(props.favoriteClip) ? 
             (props.type === "streamer") ?
