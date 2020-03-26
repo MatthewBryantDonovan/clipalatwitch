@@ -8,20 +8,16 @@ import "slick-carousel/slick/slick-theme.css";
 function ClipSlick(props) {
 
   // Hooks
-  let [width, setWidth] = useState(window.innerWidth);
-  let [clipWidth, setClipWidth] = useState(245 + (Math.floor((window.innerWidth * 0.8) / 425)) * 40);
-  let [clipHeight, setClipHeight] = useState((245 + (Math.floor((window.innerWidth * 0.8) / 425)) * 40) * .66);
-  const [slides, setSlides] = useState((Math.floor((window.innerWidth * 0.8) / 465)) || 1);
+  let [clipWidth, setClipWidth] = useState(260 + (Math.floor((window.innerWidth * 0.8) / 425)) * 40);
+  let [clipHeight, setClipHeight] = useState((260 + (Math.floor((window.innerWidth * 0.8) / 425)) * 40) * .72);
 
   // Use Effect to grab screen size
   useEffect(() => {
     const resizeListener = () => {
 
       // change width from the state object
-      setWidth(window.innerWidth);
-      setClipWidth(245 + (Math.floor((window.innerWidth * 0.8) / 425)) * 40);
-      setClipHeight((245 + (Math.floor((window.innerWidth * 0.8) / 425)) * 40) * .66);
-      setSlides((Math.floor((window.innerWidth * 0.8) / 465)) || 1);
+      setClipWidth(260 + (Math.floor((window.innerWidth * 0.8) / 425)) * 40);
+      setClipHeight((260 + (Math.floor((window.innerWidth * 0.8) / 425)) * 40) * .72);
     };
 
     // set resize listener
@@ -50,14 +46,14 @@ function ClipSlick(props) {
         breakpoint: 1744,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToScroll: 2
         }
       },
       {
         breakpoint: 1163,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToScroll: 1
         }
       }
     ]
