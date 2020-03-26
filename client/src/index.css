@@ -115,6 +115,14 @@ input {
   transform: scaleX(-1) !important;
 }
 
+.slick-prev {
+  margin-left: 4px !important;
+}
+
+.slick-next {
+  margin-right: 4px !important;
+}
+
 .slick-next:before {
   position: relative;
   top: calc(50% - 15px);

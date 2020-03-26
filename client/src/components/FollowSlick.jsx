@@ -7,29 +7,6 @@ import "slick-carousel/slick/slick-theme.css";
 
 function FollowSlick(props) {
 
-  // Hooks
-  let [width, setWidth] = useState(window.innerWidth);
-  const [slides, setSlides] = useState((Math.floor((((window.innerWidth < 900 ? window.innerWidth * 0.8 : window.innerWidth)) / (window.innerWidth < 900 ? 125 : 200))) || 1));
-
-  // Use Effect to grab screen size
-  useEffect(() => {
-    const resizeListener = () => {
-      // change width from the state object
-      setWidth(window.innerWidth);
-      setSlides((Math.floor((((window.innerWidth < 900 ? window.innerWidth * 0.8 : window.innerWidth)) / (window.innerWidth < 900 ? 125 : 200))) || 1));
-    };
-
-    // set resize listener
-    window.addEventListener('resize', resizeListener);
-
-    // clean up function
-    return () => {
-
-      // remove resize listener
-      window.removeEventListener('resize', resizeListener);
-    }
-  }, []);
-
   // Slick settings
   const settings = {
     speed: 200,
@@ -41,54 +18,54 @@ function FollowSlick(props) {
     prevArrow: <Prevarrow />,
     responsive: [
       {
-        breakpoint: 1800,
+        breakpoint: 1675,
         settings: {
           slidesToShow: 8,
-          slidesToScroll: 8,
+          slidesToScroll: 8
         }
       },
       {
-        breakpoint: 1600,
+        breakpoint: 1475,
         settings: {
           slidesToShow: 7,
-          slidesToScroll: 7,
+          slidesToScroll: 7
         }
       },
       {
-        breakpoint: 1400,
+        breakpoint: 1275,
         settings: {
           slidesToShow: 6,
-          slidesToScroll: 6,
+          slidesToScroll: 6
         }
       },
       {
-        breakpoint: 1200,
+        breakpoint: 1075,
         settings: {
           slidesToShow: 5,
-          slidesToScroll: 5,
+          slidesToScroll: 5
         }
       },
       {
-        breakpoint: 1000,
+        breakpoint: 875,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 4,
+          slidesToScroll: 4
         }
       },
       {
-        breakpoint: 800,
+        breakpoint: 675,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToScroll: 3
         }
       },
       {
-        breakpoint: 600,
+        breakpoint: 475,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToScroll: 2
         }
-      },
+      }
     ]
   };
 
