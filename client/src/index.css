@@ -22,23 +22,27 @@ html,
   width: 100vw;
 }
 
-
-.btn, .btn:active, .btn:focus,
-.btn-small, .btn-small:active, .btn-small:focus {
+.btn,
+.btn:active,
+.btn:focus,
+.btn-small,
+.btn-small:active,
+.btn-small:focus {
   background-color: #1e88e5;
   color: #ffffff;
 }
 
-.btn:hover, .btn-small:hover {
-  background-color: #0d47a1 ;
+.btn:hover,
+.btn-small:hover {
+  background-color: #0d47a1;
 }
 
 .linkText {
-  color: #00e5ff ;
+  color: #00e5ff;
 }
 
 .linkText:hover {
-  color: #00b8d4 ;
+  color: #00b8d4;
 }
 
 input {
@@ -49,37 +53,42 @@ input {
   color: #ffffff;
 }
 
-.heart, .heart:active, .heart:focus {
-  background-color: #ff80ab ;
+.heart,
+.heart:active,
+.heart:focus {
+  background-color: #ff80ab;
 }
 
 .heart:hover {
-  background-color: #ff4885 ;
+  background-color: #ff4885;
 }
 
-.unheart, .unheart:active, .unheart:focus {
-  background-color: #7b1fa2  ;
+.unheart,
+.unheart:active,
+.unheart:focus {
+  background-color: #7b1fa2;
 }
 
 .unheart:hover {
-  background-color: #5a1179  ;
+  background-color: #5a1179;
 }
+
 .dislike {
   width: 100px;
   border: none;
-  background-color: #7b1fa2 ;
+  background-color: #7b1fa2;
   color: #ffffff;
   margin-top: 5px;
 }
 
 .dislike:hover {
-  background-color: #5a1179  ;
+  background-color: #5a1179;
 }
 
 .like {
   width: 55%;
   border: none;
-  background-color: #ff80ab ;
+  background-color: #ff80ab;
   color: #ffffff;
   margin-top: 5px;
   cursor: pointer;
@@ -89,11 +98,12 @@ input {
   background-color: #ff4885;
 }
 
-.btn-img, .btn-img:active, .btn-img:focus  {
+.btn-img,
+.btn-img:active,
+.btn-img:focus {
   border: none;
   background: none;
 }
-
 
 .slick-prev:before {
   position: relative;

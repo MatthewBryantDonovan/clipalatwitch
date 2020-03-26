@@ -1,8 +1,9 @@
 import React from 'react';
-import "../index.css"
+import "../index.css";
 
 function ClipRiver(props) {
-    return(<div className="row center">
+    return(
+    <div className="row center">
         { props.riverData.map((clipData, index) => (
             <span>
                 { (index%2 === 0) ?
@@ -63,8 +64,9 @@ function ClipRiver(props) {
             </span>
         ))
         }
-    </div>)
+    </div>
+    );
     
 }
 
-export default ClipRiver
+export default ClipRiver;

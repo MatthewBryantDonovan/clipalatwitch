@@ -2,19 +2,25 @@ import React, { useState, useRef, useEffect  } from 'react';
 
 function UserSearchForm(props) {
 
+    // Hooks
     const [name, setName] = useState();
-    const focusForm = useRef(null)
 
+    // Used to focus input field
+    const focusForm = useRef(null);
+
+    // Name form field
     function updateName(e) {
         const newVal = e.target.value;
         setName(newVal);
     }
     
+    // Use effect to focus input field
     useEffect(()=> {
-        focusForm.current.focus()
-    },[])
+        focusForm.current.focus();
+    },[]);
 
-    return(<div>
+    return(
+    <div>
         <form action="submit" onSubmit={
             (e) => {e.preventDefault(); 
             props.submit( props.formType, name)
@@ -24,8 +30,9 @@ function UserSearchForm(props) {
             <input type="text" id="name" className="search-area" onChange={updateName} ref={focusForm} required />
             <button type="submit" className="btn" >Search</button>
         </form>
-    </div>)
+    </div>
+    );
     
 }
 
-export default UserSearchForm
+export default UserSearchForm;
