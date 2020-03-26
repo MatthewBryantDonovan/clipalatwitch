@@ -173,6 +173,8 @@ function UserSearchPage (props) {
             </div>
             <div className="row">
                 <div className="col s12 m12">
+                    {console.log(clipData)
+                    }
                     {clipData && (<ClipSlick clipData={clipData} />)}
                 </div>
             </div>

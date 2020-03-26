@@ -228,7 +228,7 @@ module.exports = {
                   $elemMatch: {id: req.body.typeID} 
                 }
             }, 
-            {$push: {"streamers.$.likedContent": req.body.clipID}
+            {$push: {"streamers.$.likedContent": req.body.clipID}, title: req.body.title, thumbnail: req.body.thumbnail, typeID: req.body.typeID, type: req.body.type, ID: req.body.clipID
             })
             .then(dbModel => {
               ////////////// START CLIP RIVER //////////////
@@ -241,7 +241,7 @@ module.exports = {
 
                   // Add clip to clip river and add user to likedUsers
                   db.ClipRiver
-                  .create({url: req.body.clipID, value: 5, likedUsers: [req.session.passport.user]})
+                  .create({url: req.body.clipID, value: 5, likedUsers: [req.session.passport.user], title: req.body.title, thumbnail: req.body.thumbnail, typeID: req.body.typeID, type: req.body.type, ID: req.body.clipID})
                   .then(dbModel => {
                     res.json({msg: "streamer clip saved"}); 
                   })
@@ -288,7 +288,7 @@ module.exports = {
                   $elemMatch: {id: req.body.typeID} 
                 }
             }, 
-            {$push: {"games.$.likedContent": req.body.clipID}
+            {$push: {"games.$.likedContent": req.body.clipID}, title: req.body.title, thumbnail: req.body.thumbnail, typeID: req.body.typeID, type: req.body.type, ID: req.body.clipID
             })
             .then(dbModel => {
         
@@ -301,7 +301,7 @@ module.exports = {
 
                   // Add clip to clip river and add user to likedUsers
                   db.ClipRiver
-                  .create({url: req.body.clipID, value: 5, likedUsers: [req.session.passport.user]})
+                  .create({url: req.body.clipID, value: 5, likedUsers: [req.session.passport.user], title: req.body.title, thumbnail: req.body.thumbnail, typeID: req.body.typeID, type: req.body.type, ID: req.body.clipID})
                   .then(dbModel => {
                     res.json({msg: "game clip saved"}); 
                   })

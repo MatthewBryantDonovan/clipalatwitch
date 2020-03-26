@@ -53,11 +53,13 @@ function UserSavedPage(props) {
     }
 
     // Call to server to add clip to user
-    const favoriteClip = (id) => {
+    const favoriteClip = (id, title, thumbnail) => {
         const reqObj = {
             typeID: typeID,
             type: clipDataType,
-            clipID: id
+            clipID: id,
+            title: title,
+            thumbnail: thumbnail
         };
         
         API.saveClip(reqObj)

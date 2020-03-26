@@ -51,11 +51,10 @@ function Home() {
                   <div className="row center">
                         <div className="card blue-grey darken-1">
                               <div className="card-content white-text">
-                                    <span className="card-title">Clip &#224; la Twitch</span>
                                     {(userData) ? 
-                                    <p>Welcome home {userData.username} !</p>
+                                    <span className="card-title">{userData.username}, Welcome to Clip &#224; la Twitch</span>
                                     :
-                                    <span></span>
+                                    <span className="card-title">Welcome to Clip &#224; la Twitch</span>
                                     }
                               <p>You are currently viewing liked videos from Clip &#224; la Twitch's users - sorted by popularity!</p>
                               {(userData) ?

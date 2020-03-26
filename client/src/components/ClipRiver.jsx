@@ -16,7 +16,9 @@ function ClipRiver(props) {
                         {(clipData.hypeType === (Math.max(clipData.clutchType,clipData.comboType,clipData.failType,clipData.funnyType,clipData.hypeType)) && clipData.hypeType !== 0) ? <span> Hype</span> : <span></span>}
                         {((Math.max(clipData.clutchType,clipData.comboType,clipData.failType,clipData.funnyType,clipData.hypeType)) !== 0) ? <span> Moment!</span> : <span> Untagged <i className="material-icons" style={{ color: '#1e88e5', position: "relative", top: "6px"}} >sentiment_very_dissatisfied</i></span>}
                     </div>
-                    <iframe src={clipData.url + "&autoplay=false"} height="260" width="260" className allowFullScreen></iframe>
+                    <iframe height="260" width="260" className allowFullScreen
+                        srcdoc={`<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=${clipData.url + "&autoplay=false"}><img src=${clipData.thumbnail} alt=${clipData.title}><span>▶</span></a>`}
+                    ></iframe>
                     { 
                     (props.userData) ? 
                         (clipData.typedUsers.indexOf(props.userData._id) === -1) ?
@@ -43,7 +45,9 @@ function ClipRiver(props) {
                         {(clipData.hypeType === (Math.max(clipData.clutchType,clipData.comboType,clipData.failType,clipData.funnyType,clipData.hypeType)) && clipData.hypeType !== 0) ? <span> Hype</span> : <span></span>}
                         {((Math.max(clipData.clutchType,clipData.comboType,clipData.failType,clipData.funnyType,clipData.hypeType)) !== 0) ? <span> Moment!</span> : <span> Untagged <i className="material-icons" style={{ color: '#1e88e5', position: "relative", top: "6px"}} >sentiment_very_dissatisfied</i></span>}
                     </div>
-                    <iframe src={clipData.url + "&autoplay=false"} height="260" width="260" allowFullScreen></iframe>
+                    <iframe height="260" width="260" allowFullScreen
+                        srcdoc={`<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=${clipData.url + "&autoplay=false"}><img src=${clipData.thumbnail} alt=${clipData.title}><span>▶</span></a>`}
+                    ></iframe>
                     { 
                     (props.userData) ? 
                         (clipData.typedUsers.indexOf(props.userData._id) === -1) ?

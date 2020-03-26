@@ -53,18 +53,20 @@ function ClipSlick(props) {
     {(props.clipData) ?
     props.clipData.clips.map((clip, index) => (
       <div id={clip.id}  key={index}>
-          <iframe src={clip.embed_url + "&autoplay=false"} height={clipHeight} width={clipWidth} allowFullScreen></iframe>
+          <iframe src={clip.embed_url + "&autoplay=false"} height={clipHeight} width={clipWidth} allowFullScreen
+              srcdoc={`<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}</style><a href=${clip.embed_url + "&autoplay=false"}><img src=${clip.thumbnail_url} alt=${clip.title}><span>▶</span></a>`}
+          ></iframe>
           {(props.favoriteClip) ? 
             (props.type === "streamer") ?
               (props.userData.streamers.some(streamer => streamer.likedContent.includes(clip.embed_url))) ? 
               <div> You like it! </div>
               :
-              <div><button className="like" onClick={() => props.favoriteClip(clip.embed_url)}><i className="material-icons" style={{color: 'rgb(30, 136, 229)'}}>favorite_border</i></button></div> 
+              <div><button className="like" onClick={() => props.favoriteClip(clip.embed_url, clip.title, clip.thumbnail_url)}><i className="material-icons" style={{color: 'rgb(30, 136, 229)'}}>favorite_border</i></button></div> 
             :
               (props.userData.games.some(game => game.likedContent.includes(clip.embed_url))) ? 
               <div> You like it! </div>
               :
-              <div><button  className="like" onClick={() => props.favoriteClip(clip.embed_url)}><i className="material-icons" style={{color: 'rgb(30, 136, 229)'}}>favorite_border</i></button></div> 
+              <div><button  className="like" onClick={() => props.favoriteClip(clip.embed_url, clip.title, clip.thumbnail_url)}><i className="material-icons" style={{color: 'rgb(30, 136, 229)'}}>favorite_border</i></button></div> 
           : 
           <span> </span>
           }
