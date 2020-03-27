@@ -92,9 +92,9 @@ function Sidenav(props) {
             <Updateimage handleImageChange={handleImageChange} submitImageUrl={submitImageUrl} />
             {redirect && <Redirect to='/login' />}
             <nav className="pink accent-1">
-                  <a href="#" data-target="slide-out" className="sidenav-trigger show-on-large" ><i className="material-icons nav-head-icon">menu</i></a>
-                  <span href="#" class="brand-logo center hide-on-med-and-up" style={{fontSize: "1.5em"}}>Clip &#224; la Twitch</span>
-                  <span href="#" class="brand-logo center hide-on-small-only" style={{fontSize: "2.25em"}}>Clip &#224; la Twitch</span>
+                  <button data-target="slide-out" className="sidenav-trigger show-on-large btn-small" style={{background: "unset", boxShadow: "unset"}}><i className="material-icons nav-head-icon">menu</i></button>
+                  <span className="brand-logo center hide-on-med-and-up" style={{fontSize: "1.5em"}}>Clip &#224; la Twitch</span>
+                  <span className="brand-logo center hide-on-small-only" style={{fontSize: "2.25em"}}>Clip &#224; la Twitch</span>
             </nav>
             <ul id="slide-out" className="sidenav">
                   {(userData) ?

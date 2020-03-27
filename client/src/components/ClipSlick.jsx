@@ -8,20 +8,16 @@ import "slick-carousel/slick/slick-theme.css";
 function ClipSlick(props) {
 
   // Hooks
-  let [width, setWidth] = useState(window.innerWidth);
-  let [clipWidth, setClipWidth] = useState(245 + (Math.floor((window.innerWidth * 0.8) / 425)) * 40);
-  let [clipHeight, setClipHeight] = useState((245 + (Math.floor((window.innerWidth * 0.8) / 425)) * 40) * .66);
-  const [slides, setSlides] = useState((Math.floor((window.innerWidth * 0.8) / 465)) || 1);
+  let [clipWidth, setClipWidth] = useState(260 + (Math.floor((window.innerWidth * 0.8) / 425)) * 40);
+  let [clipHeight, setClipHeight] = useState((260 + (Math.floor((window.innerWidth * 0.8) / 425)) * 40) * .72);
 
   // Use Effect to grab screen size
   useEffect(() => {
     const resizeListener = () => {
 
       // change width from the state object
-      setWidth(window.innerWidth);
-      setClipWidth(245 + (Math.floor((window.innerWidth * 0.8) / 425)) * 40);
-      setClipHeight((245 + (Math.floor((window.innerWidth * 0.8) / 425)) * 40) * .66);
-      setSlides((Math.floor((window.innerWidth * 0.8) / 465)) || 1);
+      setClipWidth(260 + (Math.floor((window.innerWidth * 0.8) / 425)) * 40);
+      setClipHeight((260 + (Math.floor((window.innerWidth * 0.8) / 425)) * 40) * .72);
     };
 
     // set resize listener
@@ -38,23 +34,39 @@ function ClipSlick(props) {
   // Slick settings
   const settings = {
     speed: 200,
-    slidesToShow: (slides > 3) ? 3 : slides,
-    slidesToScroll: (slides > 3) ? 3 : slides,
+    slidesToShow: (props.clipData.clips.length >= 3 ) ? 3 : props.clipData.clips.length,
+    slidesToScroll: (props.clipData.clips.length >= 3 ) ? 3 : props.clipData.clips.length,
     accessibility: true,
     lazyLoad: true,
     swipeToSlide: true,
     nextArrow: <Nextarrow />,
-    prevArrow: <Prevarrow />
+    prevArrow: <Prevarrow />,
+    responsive: [
+      {
+        breakpoint: 1744,
+        settings: {
+          slidesToShow: (props.clipData.clips.length >= 2 ) ? 2 : props.clipData.clips.length,
+          slidesToScroll: (props.clipData.clips.length >= 2 ) ? 2 : props.clipData.clips.length
+        }
+      },
+      {
+        breakpoint: 1163,
+        settings: {
+          slidesToShow: (props.clipData.clips.length >= 1 ) ? 1 : props.clipData.clips.length,
+          slidesToScroll: (props.clipData.clips.length >= 1 ) ? 1 : props.clipData.clips.length
+        }
+      }
+    ]
   };
 
   return (
   <div className="center">
-    <Slider {...settings} style={ (window.innerWidth < 900) ? {width: ((width*0.79)+"px")} : {width: "100%"}}>
+    <Slider {...settings} style={{width: "100%"}}>
     {(props.clipData) ?
     props.clipData.clips.map((clip, index) => (
       <div id={clip.id}  key={index}>
           <iframe src={clip.embed_url + "&autoplay=false"} height={clipHeight} width={clipWidth} allowFullScreen
-              srcdoc={`<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%;background: black}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto;z-index: 1}p{position:absolute;width:100%;top:0%;margin:auto}.bottom-bar{position:absolute;width:100%;bottom:0%;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}p,.bottom-bar{height:1.5em;text-align:center;font:12px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black;background: black;line-height:1.45;}</style><a href=${clip.embed_url + "&autoplay=false"}><img src=${clip.thumbnail_url} alt=${clip.title}><p>${clip.title}</p><span>▶</span><div class="bottom-bar"></div></a>`}
+              srcDoc={`<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%;background: black}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto;z-index: 1}p{position:absolute;width:100%;top:0%;margin:auto}.bottom-bar{position:absolute;width:100%;bottom:0%;margin:auto}span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}p,.bottom-bar{height:1.5em;text-align:center;font:12px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black;background: black;line-height:1.45;}</style><a href=${clip.embed_url + "&autoplay=false"}><img src=${clip.thumbnail_url} alt=${clip.title}><p>${clip.title}</p><span>▶</span><div class="bottom-bar"></div></a>`}
           ></iframe>
           {(props.favoriteClip) ? 
             (props.type === "streamer") ?

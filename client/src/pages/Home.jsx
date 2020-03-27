@@ -48,7 +48,7 @@ function Home() {
       return (
       <React.Fragment>
             <div className="container">
-                  <div className="row center">
+                  <div className="row center" style={{marginTop: "20px", marginBottom: "0px"}}>
                         <div className="card blue-grey darken-1">
                               <div className="card-content white-text">
                                     {(userData) ? 

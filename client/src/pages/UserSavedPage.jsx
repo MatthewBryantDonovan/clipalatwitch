@@ -79,7 +79,7 @@ function UserSavedPage(props) {
     <div>
         {notAuthed && <Redirect to="/login" />}
         <div className="container" style={{textAlign: "center"}}>
-            <div className="row" style={{marginTop: "10px"}}>
+            <div className="row" style={{marginTop: "20px"}}>
                 <div className="col m12 s12">
                     {(userData) ?
                         (userData.streamers.length > 0) ?

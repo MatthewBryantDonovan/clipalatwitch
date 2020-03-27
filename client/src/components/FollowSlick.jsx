@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Slider from "react-slick";
 import Nextarrow from '../components/Nextarrow';
 import Prevarrow from '../components/Prevarrow';
@@ -7,43 +7,72 @@ import "slick-carousel/slick/slick-theme.css";
 
 function FollowSlick(props) {
 
-  // Hooks
-  let [width, setWidth] = useState(window.innerWidth);
-  const [slides, setSlides] = useState((Math.floor((((window.innerWidth < 900 ? window.innerWidth * 0.8 : window.innerWidth)) / (window.innerWidth < 900 ? 125 : 200))) || 1));
-
-  // Use Effect to grab screen size
-  useEffect(() => {
-    const resizeListener = () => {
-      // change width from the state object
-      setWidth(window.innerWidth);
-      setSlides((Math.floor((((window.innerWidth < 900 ? window.innerWidth * 0.8 : window.innerWidth)) / (window.innerWidth < 900 ? 125 : 200))) || 1));
-    };
-
-    // set resize listener
-    window.addEventListener('resize', resizeListener);
-
-    // clean up function
-    return () => {
-
-      // remove resize listener
-      window.removeEventListener('resize', resizeListener);
-    }
-  }, []);
-
   // Slick settings
   const settings = {
     speed: 200,
-    slidesToShow: (props.data.length < slides) ? props.data.length : ((slides > 11 )? 10 : slides ),
-    slidesToScroll: (props.data.length < slides) ? props.data.length : ((slides > 11 )? 10 : slides ),
+    slidesToShow: (props.data.length >= 9 ) ? 9 : props.data.length,
+    slidesToScroll: (props.data.length >= 9 ) ? 9 : props.data.length,
     accessibility: true,
     swipeToSlide: true,
     nextArrow: <Nextarrow />,
-    prevArrow: <Prevarrow />
+    prevArrow: <Prevarrow />,
+    responsive: [
+      {
+        breakpoint: 1675,
+        settings: {
+          slidesToShow: (props.data.length >= 8 ) ? 8 : props.data.length,
+          slidesToScroll: (props.data.length >= 8 ) ? 8 : props.data.length
+        }
+      },
+      {
+        breakpoint: 1475,
+        settings: {
+          slidesToShow: (props.data.length >= 7 ) ? 7 : props.data.length,
+          slidesToScroll: (props.data.length >= 7 ) ? 7 : props.data.length
+        }
+      },
+      {
+        breakpoint: 1275,
+        settings: {
+          slidesToShow: (props.data.length >= 6 ) ? 6 : props.data.length,
+          slidesToScroll: (props.data.length >= 6 ) ? 6 : props.data.length
+        }
+      },
+      {
+        breakpoint: 1075,
+        settings: {
+          slidesToShow: (props.data.length >= 5 ) ? 5 : props.data.length,
+          slidesToScroll: (props.data.length >= 5 ) ? 5 : props.data.length
+        }
+      },
+      {
+        breakpoint: 875,
+        settings: {
+          slidesToShow: (props.data.length >= 4 ) ? 4 : props.data.length,
+          slidesToScroll: (props.data.length >= 4 ) ? 4 : props.data.length
+        }
+      },
+      {
+        breakpoint: 675,
+        settings: {
+          slidesToShow: (props.data.length >= 3 ) ? 3 : props.data.length,
+          slidesToScroll: (props.data.length >= 3 ) ? 3 : props.data.length
+        }
+      },
+      {
+        breakpoint: 475,
+        settings: {
+          slidesToShow: (props.data.length >= 2 ) ? 2 : props.data.length,
+          slidesToScroll: (props.data.length >= 2 ) ? 2 : props.data.length
+        }
+      }
+    ]
   };
 
   return (
   <div className="center">
-    <Slider {...settings} style={(window.innerWidth < 900) ? { width: ((width * 0.79) + "px") } : { width: "100%" }} >
+    {/* <Slider {...settings} style={(window.innerWidth < 900) ? { width: ((width * 0.79) + "px") } : { width: "100%" }} > */}
+    <Slider {...settings} style={{ width: "100%" }} >
       {props.data.map((item, index) => (
         <div id={item.id} key={index}>
           <div >
