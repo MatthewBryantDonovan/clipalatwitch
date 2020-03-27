@@ -2,7 +2,7 @@
 
 Welcome to Clip &#224; la Twitch, the site for everything Twitch clip related!
 
-Checkout the home page to view liked user clips.
+Check out the home page to view liked user clips.
 
 ![ Homepage logged out ](./readme_pics/homeLogout.PNG)
 
