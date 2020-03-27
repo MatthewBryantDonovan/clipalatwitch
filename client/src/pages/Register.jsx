@@ -73,8 +73,8 @@ function Register(props) {
                   <form action="submit" onSubmit={submit} >
                         <label htmlFor="username" style={{color: 'rgb(30, 136, 229)'}}>Username</label>
                         <input type="text" id="username" onChange={updateUsername} required />
-                        <label htmlFor="username" style={{color: 'rgb(30, 136, 229)'}}>Image URL for profile pic</label>
-                        <input type="text" id="username" onChange={updateUserImage} required />
+                        <label htmlFor="image" style={{color: 'rgb(30, 136, 229)'}}>Image URL for profile pic</label>
+                        <input type="text" id="image" onChange={updateUserImage} required />
                         <label htmlFor="password" style={{color: 'rgb(30, 136, 229)'}}>Password</label>
                         <input type="password" id="password" onChange={updatePassword} required  />
                         <button type="submit" className="btn" >Register</button>

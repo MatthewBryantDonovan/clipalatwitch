@@ -109,7 +109,7 @@ function UserSearchPage (props) {
     <div>
         {notAuthed && <Redirect to="/login" />}
         <div className="container">
-            <div className="card blue-grey darken-1 center">
+            <div className="card blue-grey darken-1 center" style={{marginTop: "20px", marginBottom: "0px"}}>
                 <div className="card-content white-text">
                 <p>Click the search buttons below to find games and streamers.</p>
                 <br />
@@ -142,7 +142,7 @@ function UserSearchPage (props) {
                     {(clipData) ?
                         (clipData.streamerID) ? 
                         <div className="center-align valign-center">
-                            <img src={clipData.streamerImage} height="125" width="100" style={{marginTop: "25px"}} />
+                            <img src={clipData.streamerImage} height="125" width="100" style={{marginTop: "25px"}} alt={clipData.streamerName} />
                             {(userData.streamers.some(streamer => streamer.id === clipData.streamerID)) ?
                             <div className="row" style={{ marginTop: '10px'}}>
                                 <button type="button" className="unheart btn" onClick={() => removeStreamerOrGame("streamer", clipData.streamerID)}><i className="material-icons" style={{color: 'rgb(30, 136, 229)'}}>favorite</i></button>
@@ -155,7 +155,7 @@ function UserSearchPage (props) {
                         </div>
                         :
                         <div className="center-align valign-center">
-                            <img src={clipData.gameImage} height="125" width="100" style={{marginTop: "25px"}}></img>
+                            <img src={clipData.gameImage} height="125" width="100" style={{marginTop: "25px"}} alt={clipData.gameName}/>
                             {(userData.games.some(game => game.id === clipData.gameID)) ? 
                             <div className="row" style={{ marginTop: '10px'}}>
                                 <button type="button" className="unheart btn" onClick={() => removeStreamerOrGame("game", clipData.gameID)}><i className="material-icons" style={{color: 'rgb(30, 136, 229)'}}>favorite</i></button>

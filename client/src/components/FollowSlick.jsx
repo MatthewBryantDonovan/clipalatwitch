@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Slider from "react-slick";
 import Nextarrow from '../components/Nextarrow';
 import Prevarrow from '../components/Prevarrow';
