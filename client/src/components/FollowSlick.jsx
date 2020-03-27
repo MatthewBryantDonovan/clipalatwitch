@@ -10,8 +10,8 @@ function FollowSlick(props) {
   // Slick settings
   const settings = {
     speed: 200,
-    slidesToShow: 9,
-    slidesToScroll: 9,
+    slidesToShow: (props.data.length >= 9 ) ? 9 : props.data.length,
+    slidesToScroll: (props.data.length >= 9 ) ? 9 : props.data.length,
     accessibility: true,
     swipeToSlide: true,
     nextArrow: <Nextarrow />,
@@ -20,50 +20,50 @@ function FollowSlick(props) {
       {
         breakpoint: 1675,
         settings: {
-          slidesToShow: 8,
-          slidesToScroll: 8
+          slidesToShow: (props.data.length >= 8 ) ? 8 : props.data.length,
+          slidesToScroll: (props.data.length >= 8 ) ? 8 : props.data.length
         }
       },
       {
         breakpoint: 1475,
         settings: {
-          slidesToShow: 7,
-          slidesToScroll: 7
+          slidesToShow: (props.data.length >= 7 ) ? 7 : props.data.length,
+          slidesToScroll: (props.data.length >= 7 ) ? 7 : props.data.length
         }
       },
       {
         breakpoint: 1275,
         settings: {
-          slidesToShow: 6,
-          slidesToScroll: 6
+          slidesToShow: (props.data.length >= 6 ) ? 6 : props.data.length,
+          slidesToScroll: (props.data.length >= 6 ) ? 6 : props.data.length
         }
       },
       {
         breakpoint: 1075,
         settings: {
-          slidesToShow: 5,
-          slidesToScroll: 5
+          slidesToShow: (props.data.length >= 5 ) ? 5 : props.data.length,
+          slidesToScroll: (props.data.length >= 5 ) ? 5 : props.data.length
         }
       },
       {
         breakpoint: 875,
         settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4
+          slidesToShow: (props.data.length >= 4 ) ? 4 : props.data.length,
+          slidesToScroll: (props.data.length >= 4 ) ? 4 : props.data.length
         }
       },
       {
         breakpoint: 675,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3
+          slidesToShow: (props.data.length >= 3 ) ? 3 : props.data.length,
+          slidesToScroll: (props.data.length >= 3 ) ? 3 : props.data.length
         }
       },
       {
         breakpoint: 475,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2
+          slidesToShow: (props.data.length >= 2 ) ? 2 : props.data.length,
+          slidesToScroll: (props.data.length >= 2 ) ? 2 : props.data.length
         }
       }
     ]

@@ -34,8 +34,8 @@ function ClipSlick(props) {
   // Slick settings
   const settings = {
     speed: 200,
-    slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToShow: (props.clipData.clips.length >= 3 ) ? 3 : props.clipData.clips.length,
+    slidesToScroll: (props.clipData.clips.length >= 3 ) ? 3 : props.clipData.clips.length,
     accessibility: true,
     lazyLoad: true,
     swipeToSlide: true,
@@ -45,15 +45,15 @@ function ClipSlick(props) {
       {
         breakpoint: 1744,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2
+          slidesToShow: (props.clipData.clips.length >= 2 ) ? 2 : props.clipData.clips.length,
+          slidesToScroll: (props.clipData.clips.length >= 2 ) ? 2 : props.clipData.clips.length
         }
       },
       {
         breakpoint: 1163,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToShow: (props.clipData.clips.length >= 1 ) ? 1 : props.clipData.clips.length,
+          slidesToScroll: (props.clipData.clips.length >= 1 ) ? 1 : props.clipData.clips.length
         }
       }
     ]
