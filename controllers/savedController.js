@@ -133,6 +133,7 @@ module.exports = {
       // Twitch call
       axios.get((x_query_clips), {
           headers: {
+              'Authorization': 'Bearer ' + req.session.passport.twitchToken,
               'Client-ID': process.env.TWITCH_API_KEY
           }
       }).then(function (response) {
@@ -141,6 +142,7 @@ module.exports = {
 
           axios.get((x_query_clips), {
             headers: {
+                'Authorization': 'Bearer ' + req.session.passport.twitchToken,
                 'Client-ID': process.env.TWITCH_API_KEY
             }
           }).then(function (response) {
@@ -175,6 +177,7 @@ module.exports = {
       // Twitch call
       axios.get((x_query_game), {
           headers: {
+              'Authorization': 'Bearer ' + req.session.passport.twitchToken,
               'Client-ID': process.env.TWITCH_API_KEY
           }
       }).then(function (response) {
@@ -183,6 +186,7 @@ module.exports = {
 
           axios.get((x_query_clips), {
             headers: {
+                'Authorization': 'Bearer ' + req.session.passport.twitchToken,
                 'Client-ID': process.env.TWITCH_API_KEY
             }
           }).then(function (response) {

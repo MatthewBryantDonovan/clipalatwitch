@@ -10,6 +10,7 @@ module.exports = {
     let x_query_streamer = "https://api.twitch.tv/helix/users?login=" + (streamerName);
     axios.get((x_query_streamer), {
         headers: {
+            'Authorization': 'Bearer ' + req.session.passport.twitchToken,
             'Client-ID': process.env.TWITCH_API_KEY
         }
     })
@@ -29,6 +30,7 @@ module.exports = {
       let x_query_clips = "https://api.twitch.tv/helix/clips?broadcaster_id=" + (streamerID) + "&started_at=" + (oldFormatted) + "&ended_at=" + (formatted) + "&first=100";
       axios.get((x_query_clips), {
         headers: {
+            'Authorization': 'Bearer ' + req.session.passport.twitchToken,
             'Client-ID': process.env.TWITCH_API_KEY
         }
       })
@@ -37,6 +39,7 @@ module.exports = {
           let x_query_clips = "https://api.twitch.tv/helix/clips?broadcaster_id=" + (streamerID) + "&first=100";
           axios.get((x_query_clips), {
             headers: {
+                'Authorization': 'Bearer ' + req.session.passport.twitchToken,
                 'Client-ID': process.env.TWITCH_API_KEY
             }
           })
@@ -81,6 +84,7 @@ module.exports = {
     let x_query_game = "https://api.twitch.tv/helix/games?name=" + (gameQueryName);
     axios.get((x_query_game), {
       headers: {
+          'Authorization': 'Bearer ' + req.session.passport.twitchToken,
           'Client-ID': process.env.TWITCH_API_KEY
       }
     })
@@ -102,6 +106,7 @@ module.exports = {
       let x_query_game = "https://api.twitch.tv/helix/clips?game_id=" + (gameID) + "&started_at=" + (oldFormatted) + "&ended_at=" + (formatted) + "&first=100";
       axios.get((x_query_game), {
           headers: {
+              'Authorization': 'Bearer ' + req.session.passport.twitchToken,
               'Client-ID': process.env.TWITCH_API_KEY
           }
       })
@@ -110,6 +115,7 @@ module.exports = {
           let x_query_game = "https://api.twitch.tv/helix/clips?game_id=" + (gameID) + "&first=100";
           axios.get((x_query_game), {
             headers: {
+                'Authorization': 'Bearer ' + req.session.passport.twitchToken,
                 'Client-ID': process.env.TWITCH_API_KEY
             }
           })

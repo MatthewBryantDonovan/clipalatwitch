@@ -14,5 +14,6 @@ export default {
       logout: () => axios.delete('/api/users/logout'), // connected
       getRiver: () => axios.get('/api/clipriver/getriver'), // connected
       updateImage: (newImage) => axios.put('/api/users/updateimage', newImage), // connected
-      clipType: (clipType) => axios.post('/api/clipriver/cliptype', clipType) // connected
+      clipType: (clipType) => axios.post('/api/clipriver/cliptype', clipType), // connected
+      getOauth: () => axios.post('/api/getOauth')
 };

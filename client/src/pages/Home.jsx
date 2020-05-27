@@ -15,6 +15,12 @@ function Home() {
                 API.userSavedInfo()
                 .then(function (data) {
                     setUserData(data.data);
+                    API.getOauth()
+                    .then(function (data) {
+                        console.log(data);
+                    })
+                    .catch(function (err) {
+                    });
                 })
                 .catch(function (err) {
                 });
