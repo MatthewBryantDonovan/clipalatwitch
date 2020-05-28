@@ -32,7 +32,7 @@ function ClipRiver(props) {
                         :
                         <div style={{height: "60px", lineHeight: "3.5"}}> <span>You tagged it!</span></div>
                     :
-                    <span></span>
+                    <span style={{lineHeight: "8"}}></span>
                     }
                 </div>
                 :
@@ -61,7 +61,7 @@ function ClipRiver(props) {
                         :
                         <div style={{height: "60px", lineHeight: "3.5"}}> <span>You tagged it!</span></div>
                     :
-                    <span></span>
+                    <span style={{lineHeight: "8"}}></span>
                     }
                 </div>
                 }

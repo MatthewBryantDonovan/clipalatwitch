@@ -115,6 +115,14 @@ function Sidenav(props) {
                         :
                         <li key={index} onClick={() => logout()} ><Link to='#' className="sidenav-close" ><i className="material-icons" style={{ color: '#1e88e5' }} >{route.i}</i>{route.name}</Link></li>
                   ))}
+                  {(userData) ? 
+                  <span></span>
+                  :
+                  <span>
+                        <li><Link><i className="material-icons" style={{ color: 'red' }} >search</i>Search *Requires Login*</Link></li>
+                        <li><Link><i className="material-icons" style={{ color: 'red' }} >favorite</i>Saved *Requires Login*</Link></li>
+                  </span>
+                  }
             </ul>
       </React.Fragment>
       );
